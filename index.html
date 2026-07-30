@@ -4831,7 +4831,7 @@
 #tvn-chat-messages::-webkit-scrollbar{width:5px;}
 #tvn-chat-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:4px;}
 </style>
-<div id="tvn-chat-widget" class="hidden" style="position:fixed;bottom:20px;right:20px;width:360px;max-width:calc(100vw - 32px);z-index:9999;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.55);background:rgba(14,14,26,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;">
+<div id="tvn-chat-widget" style="position:fixed;bottom:20px;right:20px;width:360px;max-width:calc(100vw - 32px);z-index:9999;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.55);background:rgba(14,14,26,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:none;flex-direction:column;">
  <div style="padding:16px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.08);background:linear-gradient(135deg,rgba(233,30,140,0.14),transparent);flex-shrink:0;">
  <div style="width:38px;height:38px;border-radius:50%;background:#e91e8c;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;">
  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 3H3a2 2 0 00-2 2v13a2 2 0 002 2h5l4 4 4-4h5a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg>
@@ -4974,7 +4974,7 @@
  window._tvnChatOpen = function() {
  var w = document.getElementById('tvn-chat-widget');
  if (!w) return;
- w.classList.remove('hidden');
+ w.style.display = 'flex';
  if (!opened) {
  opened = true;
  addBubble(GREETING, 'bot');
@@ -4987,7 +4987,7 @@
 
  window._tvnChatClose = function() {
  var w = document.getElementById('tvn-chat-widget');
- if (w) w.classList.add('hidden');
+ if (w) w.style.display = 'none';
  };
 
  window._tvnChatSend = function(text) { send(text); };
