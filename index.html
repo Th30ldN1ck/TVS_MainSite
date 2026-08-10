@@ -9867,7 +9867,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   fetch('/api/news')
    .then(function(r){return r.json();})
    .then(function(data){
-    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
+    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url&&a.urlToImage;});
     CACHE=arts;window._tnArticles=arts;
     hydrateHero(arts);hydrateSpotlight(arts);hydrateLatest(arts);
     hydrateMostRead(arts);hydrateExplore(arts);
@@ -9884,7 +9884,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   fetch('/api/sport')
    .then(function(r){return r.json();})
    .then(function(data){
-    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
+    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url&&a.urlToImage;});
     window._tnSportArticles=arts;
     hydrateSport(arts);
     if(location.hash.startsWith('#genre/')&&window.renderGenrePage)window.renderGenrePage(location.hash.slice(7));
