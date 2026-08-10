@@ -4202,6 +4202,27 @@
     </div>
    </div>
 
+   <!-- SPORT NEWS SECTION -->
+   <div style="margin-bottom:56px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+     <div style="width:4px;height:28px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
+     <h2 style="font-size:clamp(22px,3vw,30px);font-weight:900;color:#0d0d0d;letter-spacing:-0.03em;margin:0;">Sport Headlines</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="max-lg:grid-cols-1">
+     <!-- Featured left -->
+     <a id="cms-sport-featured" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+      <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:380px;background:#e8e8e8;">
+       <img id="cms-sport-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
+      </div>
+      <p id="cms-sport-cat" style="font-size:10px;font-weight:800;color:#f59e0b;letter-spacing:0.13em;text-transform:uppercase;margin:0 0 10px;">Sport</p>
+      <h3 id="cms-sport-title" style="font-size:clamp(20px,2.2vw,26px);font-weight:900;color:#0d0d0d;line-height:1.2;margin:0 0 12px;letter-spacing:-0.025em;transition:color 0.15s;" onmouseover="this.style.color='#f59e0b'" onmouseout="this.style.color='#0d0d0d'">Loading sport headlines…</h3>
+      <p id="cms-sport-desc" style="font-size:14px;color:#666;line-height:1.65;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;"></p>
+     </a>
+     <!-- List right: 4 articles -->
+     <div id="cms-sport-list" style="display:flex;flex-direction:column;"></div>
+    </div>
+   </div>
+
    <!-- COMING SOON: premiere countdown carousel -->
    <style>@keyframes mcs-dot-pulse{0%,100%{opacity:1}50%{opacity:0.35}}</style>
    <div style="margin-bottom:48px;">
@@ -9442,6 +9463,35 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   }).join('');
  }
 
+ /* ── Sport section hydration ── */
+ function hydrateSport(articles){
+  if(!articles.length)return;
+  var a0=articles[0];
+  var featEl=document.getElementById('cms-sport-featured');
+  var featImg=document.getElementById('cms-sport-img');
+  var featTitle=document.getElementById('cms-sport-title');
+  var featDesc=document.getElementById('cms-sport-desc');
+  var featCat=document.getElementById('cms-sport-cat');
+  if(featEl)featEl.href=a0.url;
+  if(featImg&&a0.urlToImage)featImg.src=a0.urlToImage;
+  if(featTitle)featTitle.textContent=a0.title;
+  if(featDesc)featDesc.textContent=a0.description||'';
+  if(featCat)featCat.textContent=a0.source.name;
+  var list=document.getElementById('cms-sport-list');
+  if(!list)return;
+  var items=articles.slice(1,5);
+  list.innerHTML=items.map(function(a,i){
+   var last=i===items.length-1;
+   return '<a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="display:flex;gap:14px;padding:16px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'align-items:flex-start;text-decoration:none;" onmouseover="this.querySelector(\'h4\').style.color=\'#f59e0b\'" onmouseout="this.querySelector(\'h4\').style.color=\'#0d0d0d\'">'
+    +'<div style="flex:1;min-width:0;">'
+    +'<span style="font-size:9px;font-weight:800;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:5px;">'+esc(a.source.name)+'</span>'
+    +'<h4 style="font-size:14px;font-weight:800;color:#0d0d0d;line-height:1.35;margin:0;transition:color 0.15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4>'
+    +'</div>'
+    +(a.urlToImage?'<div style="flex-shrink:0;width:84px;height:64px;border-radius:8px;overflow:hidden;background:#eee;"><img src="'+esc(a.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"></div>':'')
+    +'</a>';
+  }).join('');
+ }
+
  /* ── Fetch from /api/news (Vercel serverless proxy) ── */
  function loadNews(){
   if(fetched)return;fetched=true;
@@ -9457,11 +9507,27 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    .catch(function(){/* keep hardcoded content on error */});
  }
 
+ /* ── Fetch from /api/sport ── */
+ var sportFetched=false;
+ function loadSport(){
+  if(sportFetched)return;sportFetched=true;
+  fetch('/api/sport')
+   .then(function(r){return r.json();})
+   .then(function(data){
+    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
+    window._tnSportArticles=arts;
+    hydrateSport(arts);
+   })
+   .catch(function(){});
+ }
+
  window.addEventListener('hashchange',function(){
   var h=location.hash;
   if((h==='#magazine'||h.startsWith('#news-article/'))&&!fetched)loadNews();
+  if(h==='#magazine'&&!sportFetched)loadSport();
  });
  if(location.hash==='#magazine'||location.hash.startsWith('#news-article/'))loadNews();
+ if(location.hash==='#magazine')loadSport();
 })();
 </script>
 </body>
