@@ -4447,7 +4447,7 @@
        <div style="width:4px;height:18px;background:#e91e8c;border-radius:2px;"></div>
        <h3 style="font-size:14px;font-weight:900;color:#0d0d0d;letter-spacing:0.04em;text-transform:uppercase;margin:0;">Most Read</h3>
       </div>
-      <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0;">
+      <ol id="cms-mag-most-read" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0;">
        <li style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0;cursor:pointer;" onmouseover="this.querySelector('span').style.color='#e91e8c'" onmouseout="this.querySelector('span').style.color='#0d0d0d'">
         <strong style="font-size:22px;font-weight:900;color:#f0f0f0;flex-shrink:0;line-height:1;width:24px;">1</strong>
         <span style="font-size:13px;font-weight:700;color:#0d0d0d;line-height:1.35;transition:color 0.15s;">10 Must-Watch Movies in 4K HDR Right Now</span>
@@ -4563,7 +4563,7 @@
      </div>
      <a href="#" style="font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none;letter-spacing:0.05em;">VIEW ALL &rsaquo;</a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3">
+    <div id="cms-mag-explore" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3">
      <!-- Explore card template: img + tag + title -->
      <div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 1px 6px rgba(0,0,0,0.05)'">
       <div style="height:140px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
@@ -9370,6 +9370,35 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   }
  }
 
+ /* ── Most Read sidebar hydration ── */
+ function hydrateMostRead(articles){
+  var el=document.getElementById('cms-mag-most-read');
+  if(!el||articles.length<13)return;
+  var items=articles.slice(12,17);
+  el.innerHTML=items.map(function(a,i){
+   var idx=i+12;var last=i===items.length-1;
+   return '<li style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;'+(last?'':'border-bottom:1px solid #f0f0f0;')+'cursor:pointer;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.querySelector(\'span\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'span\').style.color=\'#0d0d0d\'">'
+    +'<strong style="font-size:22px;font-weight:900;color:#f0f0f0;flex-shrink:0;line-height:1;width:24px;">'+(i+1)+'</strong>'
+    +'<span style="font-size:13px;font-weight:700;color:#0d0d0d;line-height:1.35;transition:color 0.15s;">'+esc(a.title)+'</span>'
+    +'</li>';
+  }).join('');
+ }
+
+ /* ── Explore More grid hydration ── */
+ function hydrateExplore(articles){
+  var el=document.getElementById('cms-mag-explore');
+  if(!el||articles.length<13)return;
+  var items=articles.slice(12,20);
+  el.innerHTML=items.map(function(a,i){
+   var idx=i+12;var color=srcColor(a.source.name);var img=a.urlToImage||'';
+   return '<div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 4px 18px rgba(0,0,0,0.1)\'" onmouseout="this.style.boxShadow=\'0 1px 6px rgba(0,0,0,0.05)\'">'
+    +(img?'<div style="height:140px;overflow:hidden;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background=\'#eee\'"></div>':'<div style="height:140px;background:#eee;"></div>')
+    +'<div style="padding:12px 14px 14px;"><span style="font-size:9px;font-weight:800;color:'+color+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source.name)+'</span>'
+    +'<h4 style="font-size:13px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:5px 0 0;letter-spacing:-0.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4></div>'
+    +'</div>';
+  }).join('');
+ }
+
  /* ── Fetch from /api/news (Vercel serverless proxy) ── */
  function loadNews(){
   if(fetched)return;fetched=true;
@@ -9379,6 +9408,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
     CACHE=arts;window._tnArticles=arts;
     hydrateHero(arts);hydrateSpotlight(arts);hydrateLatest(arts);
+    hydrateMostRead(arts);hydrateExplore(arts);
     if(typeof window._pendingNAIdx==='number'){window._renderNewsArticle(window._pendingNAIdx);delete window._pendingNAIdx;}
    })
    .catch(function(){/* keep hardcoded content on error */});
