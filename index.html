@@ -4202,6 +4202,165 @@
     </div>
    </div>
 
+   <!-- COMING SOON: premiere countdown carousel -->
+   <style>@keyframes mcs-dot-pulse{0%,100%{opacity:1}50%{opacity:0.35}}</style>
+   <div style="margin-bottom:48px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+     <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+      <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Coming Soon</h2>
+     </div>
+     <a href="#" style="font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none;letter-spacing:0.05em;">SEE SCHEDULE &rsaquo;</a>
+    </div>
+    <div id="mcs-root" style="border-radius:20px;overflow:hidden;position:relative;height:460px;background:#040408;user-select:none;" onmouseenter="mcsPause()" onmouseleave="mcsResume()">
+     <div id="mcs-track" style="display:flex;height:100%;transition:transform 0.65s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;">
+
+      <!-- SLIDE 0 — Drama series -->
+      <div style="min-width:100%;height:100%;position:relative;flex-shrink:0;">
+       <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=1600&q=85" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% center;">
+       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(4,4,8,1) 0%,rgba(4,4,8,0.88) 30%,rgba(4,4,8,0.5) 58%,rgba(4,4,8,0.08) 100%);"></div>
+       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,8,0.55) 0%,transparent 38%);"></div>
+       <div style="position:absolute;top:50%;left:52px;transform:translateY(-50%);max-width:500px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:#e91e8c;color:white;font-size:9px;font-weight:900;letter-spacing:0.18em;padding:5px 11px;border-radius:5px;text-transform:uppercase;margin-bottom:14px;">
+         <span style="width:5px;height:5px;border-radius:50%;background:white;flex-shrink:0;animation:mcs-dot-pulse 1.4s ease-in-out infinite;"></span>COMING SOON
+        </span>
+        <p style="color:rgba(255,255,255,0.48);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 7px;">HBO Original Series</p>
+        <h2 style="color:white;font-size:42px;font-weight:900;line-height:1.04;margin:0 0 24px;letter-spacing:-0.025em;text-transform:uppercase;">THE LAST<br>THRONE</h2>
+        <div id="mcs-cd-0" style="display:flex;align-items:flex-start;gap:5px;margin-bottom:28px;">
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">DAYS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">HOURS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">MINS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
+         <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+       </div>
+      </div>
+
+      <!-- SLIDE 1 — Live sports -->
+      <div style="min-width:100%;height:100%;position:relative;flex-shrink:0;">
+       <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600&q=85" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% center;">
+       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(4,4,8,1) 0%,rgba(4,4,8,0.88) 30%,rgba(4,4,8,0.5) 58%,rgba(4,4,8,0.08) 100%);"></div>
+       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,8,0.55) 0%,transparent 38%);"></div>
+       <div style="position:absolute;top:50%;left:52px;transform:translateY(-50%);max-width:500px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:#f97316;color:white;font-size:9px;font-weight:900;letter-spacing:0.18em;padding:5px 11px;border-radius:5px;text-transform:uppercase;margin-bottom:14px;">
+         <span style="width:5px;height:5px;border-radius:50%;background:white;flex-shrink:0;animation:mcs-dot-pulse 1s ease-in-out infinite;"></span>LIVE EVENT
+        </span>
+        <p style="color:rgba(255,255,255,0.48);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 7px;">TrueVisions Sports Live</p>
+        <h2 style="color:white;font-size:42px;font-weight:900;line-height:1.04;margin:0 0 24px;letter-spacing:-0.025em;text-transform:uppercase;">MUAY THAI<br>WORLD CHAMPIONSHIP</h2>
+        <div id="mcs-cd-1" style="display:flex;align-items:flex-start;gap:5px;margin-bottom:28px;">
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">DAYS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">HOURS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">MINS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
+         <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+       </div>
+      </div>
+
+      <!-- SLIDE 2 — TVN Original -->
+      <div style="min-width:100%;height:100%;position:relative;flex-shrink:0;">
+       <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=85" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center;">
+       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(4,4,8,1) 0%,rgba(4,4,8,0.88) 30%,rgba(4,4,8,0.5) 58%,rgba(4,4,8,0.08) 100%);"></div>
+       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,8,0.55) 0%,transparent 38%);"></div>
+       <div style="position:absolute;top:50%;left:52px;transform:translateY(-50%);max-width:500px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#e91e8c,#a50a5e);color:white;font-size:9px;font-weight:900;letter-spacing:0.18em;padding:5px 11px;border-radius:5px;text-transform:uppercase;margin-bottom:14px;">
+         <span style="width:5px;height:5px;border-radius:50%;background:white;flex-shrink:0;animation:mcs-dot-pulse 1.4s ease-in-out infinite;"></span>TVN ORIGINAL
+        </span>
+        <p style="color:rgba(255,255,255,0.48);font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 7px;">TrueVisions NOW Original</p>
+        <h2 style="color:white;font-size:42px;font-weight:900;line-height:1.04;margin:0 0 24px;letter-spacing:-0.025em;text-transform:uppercase;">VANISHED<br><span style="font-size:22px;color:rgba(255,255,255,0.55);font-weight:700;letter-spacing:0.04em;">สาบสูญ</span></h2>
+        <div id="mcs-cd-2" style="display:flex;align-items:flex-start;gap:5px;margin-bottom:28px;">
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">DAYS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">HOURS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">MINS</p></div>
+         <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
+         <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
+         <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
+         <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
+       </div>
+      </div>
+
+     </div>
+
+     <!-- Dot indicators -->
+     <div style="position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:10;">
+      <button onclick="mcsGoTo(0)" data-dot="0" style="height:8px;border-radius:4px;border:none;background:white;cursor:pointer;padding:0;transition:width 0.25s,opacity 0.25s;width:22px;opacity:1;"></button>
+      <button onclick="mcsGoTo(1)" data-dot="1" style="height:8px;border-radius:4px;border:none;background:white;cursor:pointer;padding:0;transition:width 0.25s,opacity 0.25s;width:8px;opacity:0.35;"></button>
+      <button onclick="mcsGoTo(2)" data-dot="2" style="height:8px;border-radius:4px;border:none;background:white;cursor:pointer;padding:0;transition:width 0.25s,opacity 0.25s;width:8px;opacity:0.35;"></button>
+     </div>
+
+     <!-- Prev arrow -->
+     <button onclick="mcsPrev()" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;line-height:1;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&lsaquo;</button>
+     <!-- Next arrow -->
+     <button onclick="mcsNext()" style="position:absolute;right:18px;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;line-height:1;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&rsaquo;</button>
+    </div>
+   </div>
+   <script>
+   (function(){
+    var targets=[
+     new Date('2026-08-27T20:00:00'),
+     new Date('2026-09-10T18:00:00'),
+     new Date('2026-09-20T20:00:00')
+    ];
+    var cur=0,paused=false;
+    function pad(n){return String(n).padStart(2,'0');}
+    function updateCd(){
+     var now=Date.now();
+     targets.forEach(function(t,i){
+      var diff=Math.max(0,t-now);
+      var d=Math.floor(diff/86400000);
+      var h=Math.floor(diff%86400000/3600000);
+      var m=Math.floor(diff%3600000/60000);
+      var s=Math.floor(diff%60000/1000);
+      var cd=document.getElementById('mcs-cd-'+i);
+      if(!cd)return;
+      var bs=cd.querySelectorAll('b');
+      if(bs[0])bs[0].textContent=pad(d);
+      if(bs[1])bs[1].textContent=pad(h);
+      if(bs[2])bs[2].textContent=pad(m);
+      if(bs[3])bs[3].textContent=pad(s);
+     });
+    }
+    function goTo(n){
+     cur=((n%targets.length)+targets.length)%targets.length;
+     var tr=document.getElementById('mcs-track');
+     if(tr)tr.style.transform='translateX(-'+(cur*100)+'%)';
+     document.querySelectorAll('#mcs-root [data-dot]').forEach(function(d){
+      var a=+d.dataset.dot===cur;
+      d.style.opacity=a?'1':'0.35';
+      d.style.width=a?'22px':'8px';
+     });
+    }
+    window.mcsGoTo=goTo;
+    window.mcsNext=function(){goTo(cur+1);};
+    window.mcsPrev=function(){goTo(cur-1);};
+    window.mcsPause=function(){paused=true;};
+    window.mcsResume=function(){paused=false;};
+    setInterval(function(){if(!paused)goTo(cur+1);},8000);
+    setInterval(updateCd,1000);
+    updateCd();
+   })();
+   </script>
+
    <!-- LATEST STORIES + SIDEBAR -->
    <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;margin-bottom:48px;" class="max-lg:grid-cols-1">
     <!-- Latest stories list -->
