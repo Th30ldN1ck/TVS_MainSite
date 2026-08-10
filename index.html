@@ -9240,7 +9240,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    var bi=articles.indexOf(b);var col=srcColor(b.source.name);
    return '<div onclick="location.hash=\'news-article/'+bi+'\';window.scrollTo(0,0)" style="flex-shrink:0;width:210px;cursor:pointer;" onmouseover="this.querySelector(\'h3\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'h3\').style.color=\'#111\'">'
     +'<div style="height:124px;border-radius:10px;overflow:hidden;margin-bottom:10px;background:#d5d5d8;">'
-    +(b.urlToImage?'<img src="'+esc(b.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background=\'#d5d5d8\'">':'')
+    +(b.urlToImage?'<img src="'+esc(b.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">':'')
     +'</div>'
     +'<span style="font-size:9px;font-weight:800;color:'+col+';letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:4px;">'+esc(b.source.name)+'</span>'
     +'<h3 style="font-size:13px;font-weight:800;color:#111;line-height:1.35;margin:0;transition:color 0.15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">'+esc(b.title)+'</h3>'
@@ -9392,7 +9392,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   el.innerHTML=items.map(function(a,i){
    var idx=i+12;var color=srcColor(a.source.name);var img=a.urlToImage||'';
    return '<div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 4px 18px rgba(0,0,0,0.1)\'" onmouseout="this.style.boxShadow=\'0 1px 6px rgba(0,0,0,0.05)\'">'
-    +(img?'<div style="height:140px;overflow:hidden;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.background=\'#eee\'"></div>':'<div style="height:140px;background:#eee;"></div>')
+    +(img?'<div style="height:140px;overflow:hidden;background:#eee;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"></div>':'<div style="height:140px;background:#eee;"></div>')
     +'<div style="padding:12px 14px 14px;"><span style="font-size:9px;font-weight:800;color:'+color+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source.name)+'</span>'
     +'<h4 style="font-size:13px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:5px 0 0;letter-spacing:-0.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4></div>'
     +'</div>';
