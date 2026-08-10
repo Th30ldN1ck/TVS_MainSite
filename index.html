@@ -4232,15 +4232,18 @@
 
    <!-- SPORT NEWS SECTION -->
    <div style="margin-bottom:56px;">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
-     <div style="width:4px;height:28px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
-     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Sport Headlines</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+     <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:4px;height:28px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
+      <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Sport Headlines</h2>
+     </div>
+     <a href="#genre/sport" class="nav-link" style="font-size:12px;font-weight:700;color:#f59e0b;text-decoration:none;letter-spacing:0.05em;">VIEW ALL &rsaquo;</a>
     </div>
     <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="tvn-sport-grid">
      <!-- Featured left -->
      <a id="cms-sport-featured" href="#" style="text-decoration:none;display:block;cursor:pointer;">
       <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:380px;background:#e8e8e8;">
-       <img id="cms-sport-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
+       <img id="cms-sport-img" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;visibility:hidden;" onload="this.style.visibility=''" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
       </div>
       <p id="cms-sport-cat" style="font-size:10px;font-weight:800;color:#f59e0b;letter-spacing:0.13em;text-transform:uppercase;margin:0 0 10px;">Sport</p>
       <h3 id="cms-sport-title" style="font-size:clamp(20px,2.2vw,26px);font-weight:900;color:#0d0d0d;line-height:1.2;margin:0 0 12px;letter-spacing:-0.025em;transition:color 0.15s;" onmouseover="this.style.color='#f59e0b'" onmouseout="this.style.color='#0d0d0d'">Loading sport headlines…</h3>
@@ -9852,7 +9855,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   var featDesc=document.getElementById('cms-sport-desc');
   var featCat=document.getElementById('cms-sport-cat');
   if(featEl)featEl.href='#news-article/'+SPORT_OFFSET;
-  if(featImg&&a0.urlToImage)featImg.src=imgUrl(a0.urlToImage);
+  if(featImg&&a0.urlToImage){featImg.style.visibility='hidden';featImg.src=imgUrl(a0.urlToImage);}
   if(featTitle)featTitle.textContent=a0.title;
   if(featDesc)featDesc.textContent=a0.description||'';
   if(featCat)featCat.textContent=a0.source.name;
