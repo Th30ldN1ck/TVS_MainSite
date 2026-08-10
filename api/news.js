@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
   try {
     const r = await fetch(
-      'https://newsapi.org/v2/top-headlines?category=entertainment&language=en&pageSize=20&apiKey=' + key
+      'https://newsapi.org/v2/top-headlines?category=entertainment&language=en&pageSize=30&apiKey=' + key
     );
     const data = await r.json();
     res.setHeader('Access-Control-Allow-Origin', '*');
