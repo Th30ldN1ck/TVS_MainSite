@@ -4817,6 +4817,22 @@
 
 
 <!-- ================================================================
+ PAGE: NEWS ARTICLE (live from NewsAPI entertainment)
+================================================================ -->
+<div id="page-news-article" class="tvn-page hidden">
+ <div style="background:#f7f7f9;min-height:100vh;padding-top:64px;">
+  <div style="max-width:780px;margin:0 auto;padding:40px 24px 80px;">
+   <a href="#magazine" style="display:inline-flex;align-items:center;gap:6px;color:#888;font-size:13px;font-weight:600;text-decoration:none;margin-bottom:32px;cursor:pointer;transition:color 0.15s;" onmouseover="this.style.color='#e91e8c'" onmouseout="this.style.color='#888'">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Magazine
+   </a>
+   <div id="na-body"></div>
+  </div>
+ </div>
+</div>
+<style>@keyframes naFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}</style>
+
+<!-- ================================================================
  PAGE: 7.0 SIGN IN
 ================================================================ -->
 <div id="page-signin" class="tvn-page hidden">
@@ -6689,6 +6705,11 @@ window._tvnSupportToggle=function(btn){var topic=btn.dataset.topic;var panel=doc
  var _slug = hash.slice(8);
  if (window._renderSupportArticle) { window._renderSupportArticle(_slug); }
  else { window._pendingSASlug = _slug; }
+ } else if (hash.startsWith('news-article/')) {
+ showPage('page-news-article');
+ var _nidx = parseInt(hash.slice(13));
+ if (window._renderNewsArticle) { window._renderNewsArticle(_nidx); }
+ else { window._pendingNAIdx = _nidx; }
  } else {
  showPage('page-home', hash || null);
  }
@@ -9168,6 +9189,132 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   /* Apply on load */
   document.addEventListener('DOMContentLoaded', function() { applyLang(currentLang); });
   if (document.readyState !== 'loading') applyLang(currentLang);
+})();
+</script>
+<script>
+/* ── NewsAPI: magazine hydration + article detail pages ── */
+(function(){
+ var CACHE=null,fetched=false;
+
+ function fmtDate(d){try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){return '';}}
+ function readTime(a){var w=((a.description||'')+' '+(a.content||'')).split(/\s+/).length;return Math.max(2,Math.ceil(w/200));}
+ function srcColor(n){n=(n||'').toLowerCase();if(/sport|espn|goal/.test(n))return '#f59e0b';if(/music|billboard|rolling/.test(n))return '#8b5cf6';if(/tech|wired|verge/.test(n))return '#6366f1';return '#e91e8c';}
+ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+ /* ── Article detail renderer ── */
+ window._renderNewsArticle=function(idx){
+  var articles=CACHE||[];
+  var a=articles[idx];
+  var el=document.getElementById('na-body');
+  if(!el)return;
+  if(!a){el.innerHTML='<p style="color:#999;text-align:center;padding:60px 0;">Article not found. <a href="#magazine" style="color:#e91e8c;">← Back to Magazine</a></p>';return;}
+  var color=srcColor(a.source.name);
+  var rt=readTime(a);
+  var imgH=a.urlToImage?'<div style="height:420px;border-radius:16px;overflow:hidden;margin-bottom:32px;box-shadow:0 4px 24px rgba(0,0,0,0.1);"><img src="'+esc(a.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'"></div>':'';
+  var body=(a.description||'')+(a.content?' '+a.content.replace(/\[\+\d+ chars\]/g,'…'):'');
+  var moreH=articles.filter(function(_,i){return i!==idx;}).slice(0,4).map(function(b){
+   var bi=articles.indexOf(b);
+   return '<div onclick="location.hash=\'news-article/'+bi+'\';window.scrollTo(0,0)" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #ebebeb;cursor:pointer;align-items:flex-start;" onmouseover="this.querySelector(\'h3\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'h3\').style.color=\'#0d0d0d\'">'
+    +(b.urlToImage?'<div style="flex-shrink:0;width:100px;height:70px;border-radius:8px;overflow:hidden;"><img src="'+esc(b.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'"></div>':'')
+    +'<div style="flex:1;min-width:0;"><span style="font-size:10px;font-weight:800;color:'+srcColor(b.source.name)+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(b.source.name)+'</span><h3 style="font-size:14px;font-weight:800;color:#0d0d0d;line-height:1.35;margin:4px 0 0;transition:color 0.15s;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">'+esc(b.title)+'</h3></div></div>';
+  }).join('');
+  el.style.animation='none';void el.offsetHeight;el.style.animation='naFadeIn 0.3s ease';
+  el.innerHTML=
+   '<span style="font-size:11px;font-weight:800;color:'+color+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source.name)+'</span>'
+   +'<h1 style="font-size:30px;font-weight:900;color:#0d0d0d;line-height:1.2;margin:10px 0 18px;letter-spacing:-0.02em;">'+esc(a.title)+'</h1>'
+   +'<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #e8e8e8;">'
+    +(a.author?'<span style="font-size:13px;color:#444;font-weight:600;">By '+esc(a.author.split(',')[0])+'</span><span style="color:#ddd;">·</span>':'')
+    +'<span style="font-size:13px;color:#888;">'+fmtDate(a.publishedAt)+'</span><span style="color:#ddd;">·</span>'
+    +'<span style="font-size:13px;color:#888;">'+rt+' min read</span>'
+   +'</div>'
+   +imgH
+   +'<div style="font-size:17px;color:#333;line-height:1.75;margin-bottom:36px;">'+esc(body)+'</div>'
+   +'<a href="'+esc(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#e91e8c;color:white;font-size:14px;font-weight:800;padding:14px 28px;border-radius:50px;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity=\'0.85\'" onmouseout="this.style.opacity=\'1\'">Read Full Article on '+esc(a.source.name)+' <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
+   +(moreH?'<div style="margin-top:52px;"><div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;"><div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div><h2 style="font-size:18px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">More Entertainment</h2></div>'+moreH+'</div>':'');
+ };
+
+ /* ── Spotlight grid hydration ── */
+ function hydrateSpotlight(articles){
+  var el=document.getElementById('cms-mag-spotlight');
+  if(!el||articles.length<4)return;
+  el.innerHTML=articles.slice(3,6).map(function(a,i){
+   var idx=i+3;var color=srcColor(a.source.name);var img=a.urlToImage||'';
+   return '<div style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 6px 24px rgba(0,0,0,0.12)\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.boxShadow=\'0 1px 8px rgba(0,0,0,0.06)\';this.style.transform=\'translateY(0)\'">'
+    +(img?'<div style="height:200px;overflow:hidden;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'" onerror="this.parentElement.style.display=\'none\'"></div>':'<div style="height:200px;background:#eee;"></div>')
+    +'<div style="padding:18px 20px 20px;"><span style="font-size:10px;font-weight:800;color:'+color+';letter-spacing:0.12em;text-transform:uppercase;">'+esc(a.source.name)+'</span>'
+    +'<h3 style="font-size:16px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:6px 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h3>'
+    +'<p style="font-size:13px;color:#777;line-height:1.5;margin:0 0 14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.description||'')+'</p>'
+    +'<div style="display:flex;align-items:center;justify-content:space-between;"><span style="font-size:11px;color:#aaa;">'+fmtDate(a.publishedAt)+' · '+readTime(a)+' min</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div></div>';
+  }).join('');
+ }
+
+ /* ── Latest stories list hydration ── */
+ function hydrateLatest(articles){
+  var el=document.getElementById('cms-mag-latest');
+  if(!el||articles.length<7)return;
+  var items=articles.slice(6,12);
+  el.innerHTML=items.map(function(a,i){
+   var idx=i+6;var color=srcColor(a.source.name);var last=i===items.length-1;
+   return '<div style="display:flex;gap:16px;padding:18px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'cursor:pointer;align-items:flex-start;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.querySelector(\'h3\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'h3\').style.color=\'#0d0d0d\'">'
+    +(a.urlToImage?'<div style="flex-shrink:0;width:110px;height:76px;border-radius:10px;overflow:hidden;"><img src="'+esc(a.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'"></div>':'')
+    +'<div style="flex:1;min-width:0;"><span style="font-size:10px;font-weight:800;color:'+color+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source.name)+'</span>'
+    +'<h3 style="font-size:15px;font-weight:800;color:#0d0d0d;line-height:1.35;margin:4px 0 6px;transition:color 0.15s;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h3>'
+    +'<span style="font-size:11px;color:#aaa;">'+fmtDate(a.publishedAt)+' · '+readTime(a)+' min read</span></div></div>';
+  }).join('');
+ }
+
+ /* ── Hero + teaser hydration ── */
+ function hydrateHero(articles){
+  if(!articles.length)return;
+  var a0=articles[0],a1=articles[1],a2=articles[2];
+  // Hero
+  var hImg=document.getElementById('cms-mag-hero-img');
+  if(hImg){
+   if(a0.urlToImage)hImg.src=a0.urlToImage;
+   var hCard=hImg.parentElement;hCard.style.cursor='pointer';
+   hCard.onclick=function(){location.hash='news-article/0';};
+  }
+  var hCat=document.getElementById('cms-mag-hero-cat');if(hCat)hCat.textContent=a0.source.name+' · '+fmtDate(a0.publishedAt);
+  var hTitle=document.getElementById('cms-mag-hero-title');if(hTitle)hTitle.textContent=a0.title;
+  var hExc=document.getElementById('cms-mag-hero-excerpt');if(hExc)hExc.textContent=a0.description||'';
+  var hBy=document.getElementById('cms-mag-hero-byline');if(hBy)hBy.textContent='By '+(a0.author?a0.author.split(',')[0]:a0.source.name)+' · '+readTime(a0)+' min read';
+  // Teaser 1
+  if(a1){
+   var t1=document.getElementById('cms-mag-t1-img');
+   if(t1){if(a1.urlToImage)t1.src=a1.urlToImage;var t1c=t1.parentElement;t1c.style.cursor='pointer';t1c.onclick=function(){location.hash='news-article/1';};}
+   var t1cat=document.getElementById('cms-mag-t1-cat');if(t1cat)t1cat.textContent=a1.source.name;
+   var t1ti=document.getElementById('cms-mag-t1-title');if(t1ti)t1ti.textContent=a1.title;
+   var t1rt=document.getElementById('cms-mag-t1-readtime');if(t1rt)t1rt.textContent=readTime(a1)+' min read';
+  }
+  // Teaser 2
+  if(a2){
+   var t2=document.getElementById('cms-mag-t2-img');
+   if(t2){if(a2.urlToImage)t2.src=a2.urlToImage;var t2c=t2.parentElement;t2c.style.cursor='pointer';t2c.onclick=function(){location.hash='news-article/2';};}
+   var t2cat=document.getElementById('cms-mag-t2-cat');if(t2cat)t2cat.textContent=a2.source.name;
+   var t2ti=document.getElementById('cms-mag-t2-title');if(t2ti)t2ti.textContent=a2.title;
+   var t2rt=document.getElementById('cms-mag-t2-readtime');if(t2rt)t2rt.textContent=readTime(a2)+' min read';
+  }
+ }
+
+ /* ── Fetch from /api/news (Vercel serverless proxy) ── */
+ function loadNews(){
+  if(fetched)return;fetched=true;
+  fetch('/api/news')
+   .then(function(r){return r.json();})
+   .then(function(data){
+    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
+    CACHE=arts;window._tnArticles=arts;
+    hydrateHero(arts);hydrateSpotlight(arts);hydrateLatest(arts);
+    if(typeof window._pendingNAIdx==='number'){window._renderNewsArticle(window._pendingNAIdx);delete window._pendingNAIdx;}
+   })
+   .catch(function(){/* keep hardcoded content on error */});
+ }
+
+ window.addEventListener('hashchange',function(){
+  var h=location.hash;
+  if((h==='#magazine'||h.startsWith('#news-article/'))&&!fetched)loadNews();
+ });
+ if(location.hash==='#magazine'||location.hash.startsWith('#news-article/'))loadNews();
 })();
 </script>
 </body>
