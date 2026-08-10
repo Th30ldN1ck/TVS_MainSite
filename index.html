@@ -9208,6 +9208,34 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   var others=articles.filter(function(_,i){return i!==idx;});
   var rail1=others.slice(0,8);
   var rail2=others.slice(8,16);
+  var tvnShows=[
+   {img:'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=700&q=85',badge:'Live',schedule:'Tuesdays',title:'Muay Thai Championship Live',meta:'Ongoing · Sport · Live',desc:'Experience the world\'s most elite Muay Thai competition live every Tuesday, with world-class fighters from Thailand and across the globe.',href:'#browse/originals'},
+   {img:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=700&q=85',badge:'TVN Original',schedule:'New Episodes Fridays',title:'Vanished · สาบสูญ',meta:'1 Season · 18+ · 2026',desc:'A gripping Thai original thriller following a detective who vanishes while investigating a series of unsolved cases in rural Thailand.',href:'#browse/originals'},
+   {img:'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=700&q=85',badge:'New Season',schedule:'All Episodes Now',title:'The Last Throne',meta:'2 Seasons · 16+ · 2025',desc:'HBO\'s sweeping epic of power, betrayal and dynasty — both seasons now streaming exclusively on TrueVisions NOW.',href:'#browse/series'}
+  ];
+  var show=tvnShows[idx%tvnShows.length];
+  var tvnCard='<div style="border-top:1px solid #e8e8e8;margin:40px 0 32px;padding-top:28px;">'
+   +'<p style="font-size:10px;font-weight:900;color:#aaa;letter-spacing:0.14em;text-transform:uppercase;margin:0 0 16px;">Also on TrueVisions NOW</p>'
+   +'<div style="display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;">'
+    +'<div style="flex-shrink:0;width:min(300px,100%);">'
+     +'<div style="position:relative;border-radius:10px;overflow:hidden;">'
+     +'<img src="'+show.img+'" alt="" style="width:100%;height:170px;object-fit:cover;display:block;" onerror="this.style.background=\'#ddd\'">'
+     +'<div style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;display:flex;align-items:center;gap:8px;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent);">'
+     +'<span style="background:#e91e8c;color:white;font-size:10px;font-weight:900;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;">'+show.badge+'</span>'
+     +'<span style="font-size:12px;font-weight:700;color:white;">'+show.schedule+'</span>'
+     +'</div></div>'
+     +'<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">'
+     +'<button style="display:flex;align-items:center;gap:5px;padding:8px 15px;border-radius:50px;background:#e8e8e8;border:none;color:#111;font-size:12px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background=\'#d0d0d0\'" onmouseout="this.style.background=\'#e8e8e8\'"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>My List</button>'
+     +'<button onclick="location.hash=\'browse/originals\'" style="display:flex;align-items:center;gap:5px;padding:8px 15px;border-radius:50px;background:#e8e8e8;border:none;color:#111;font-size:12px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background=\'#d0d0d0\'" onmouseout="this.style.background=\'#e8e8e8\'"><svg width="9" height="11" viewBox="0 0 12 14" fill="#111"><path d="M2 1l9 6-9 6z"/></svg>Watch</button>'
+     +'<button onclick="location.hash=\'browse/originals\'" style="display:flex;align-items:center;gap:5px;padding:8px 15px;border-radius:50px;background:#e8e8e8;border:none;color:#111;font-size:12px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background=\'#d0d0d0\'" onmouseout="this.style.background=\'#e8e8e8\'">Explore<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>'
+     +'</div>'
+    +'</div>'
+    +'<div style="flex:1;min-width:200px;padding-top:4px;">'
+     +'<h3 style="font-size:22px;font-weight:900;color:#0d0d0d;margin:0 0 8px;letter-spacing:-0.02em;">'+show.title+'</h3>'
+     +'<p style="font-size:13px;color:#888;margin:0 0 14px;font-weight:500;">'+show.meta+'</p>'
+     +'<p style="font-size:15px;color:#444;line-height:1.6;margin:0;">'+show.desc+'</p>'
+    +'</div>'
+   +'</div></div>';
   function cardHtml(b){
    var bi=articles.indexOf(b);var col=srcColor(b.source.name);
    return '<div onclick="location.hash=\'news-article/'+bi+'\';window.scrollTo(0,0)" style="flex-shrink:0;width:210px;cursor:pointer;" onmouseover="this.querySelector(\'h3\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'h3\').style.color=\'#111\'">'
@@ -9256,6 +9284,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    +'</div>'
    +(a.description?'<p style="font-size:19px;color:#1a1a1a;line-height:1.65;font-weight:500;margin:0 0 24px;letter-spacing:-0.01em;">'+esc(a.description)+'</p>':'')
    +'<div id="na-article-body" style="font-size:16px;color:#333;line-height:1.85;margin-bottom:36px;"><span style="color:#bbb;font-size:14px;">Loading full article…</span></div>'
+   +tvnCard
    +'<a href="'+esc(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;background:white;border:1px solid #e5e5e5;border-left:4px solid #e91e8c;border-radius:12px;text-decoration:none;margin-bottom:52px;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow=\'0 4px 20px rgba(0,0,0,0.09)\'" onmouseout="this.style.boxShadow=\'none\'">'
    +'<div><p style="font-size:10px;font-weight:900;color:#e91e8c;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 4px;">Continue Reading</p><p style="font-size:15px;font-weight:700;color:#111;margin:0;">Read the full story on '+esc(a.source.name)+'</p></div>'
    +'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e91e8c" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>'
