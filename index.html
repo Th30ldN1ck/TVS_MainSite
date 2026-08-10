@@ -4210,7 +4210,7 @@
     </div>
     <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="max-lg:grid-cols-1">
      <!-- Featured left -->
-     <a id="cms-sport-featured" href="#" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+     <a id="cms-sport-featured" href="#" style="text-decoration:none;display:block;cursor:pointer;">
       <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:380px;background:#e8e8e8;">
        <img id="cms-sport-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
       </div>
@@ -9262,7 +9262,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
  /* ── Article detail renderer — TUDUM style ── */
  window._renderNewsArticle=function(idx){
   var articles=CACHE||[];
-  var a=articles[idx];
+  var a=(window._tnArticles&&window._tnArticles[idx])||articles[idx];
   var el=document.getElementById('na-body');
   if(!el)return;
   if(!a){el.innerHTML='<div style="max-width:780px;margin:0 auto;padding:60px 24px;text-align:center;color:#999;">Article not found. <a href="#magazine" style="color:#e91e8c;">← Back</a></div>';return;}
@@ -9464,15 +9464,19 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
  }
 
  /* ── Sport section hydration ── */
+ var SPORT_OFFSET=50;
  function hydrateSport(articles){
   if(!articles.length)return;
+  /* store sport articles in _tnArticles at offset 50 so _renderNewsArticle can find them */
+  if(!window._tnArticles)window._tnArticles=[];
+  articles.forEach(function(a,i){window._tnArticles[SPORT_OFFSET+i]=a;});
   var a0=articles[0];
   var featEl=document.getElementById('cms-sport-featured');
   var featImg=document.getElementById('cms-sport-img');
   var featTitle=document.getElementById('cms-sport-title');
   var featDesc=document.getElementById('cms-sport-desc');
   var featCat=document.getElementById('cms-sport-cat');
-  if(featEl)featEl.href=a0.url;
+  if(featEl)featEl.href='#news-article/'+SPORT_OFFSET;
   if(featImg&&a0.urlToImage)featImg.src=a0.urlToImage;
   if(featTitle)featTitle.textContent=a0.title;
   if(featDesc)featDesc.textContent=a0.description||'';
@@ -9481,8 +9485,8 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   if(!list)return;
   var items=articles.slice(1,5);
   list.innerHTML=items.map(function(a,i){
-   var last=i===items.length-1;
-   return '<a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="display:flex;gap:14px;padding:16px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'align-items:flex-start;text-decoration:none;" onmouseover="this.querySelector(\'h4\').style.color=\'#f59e0b\'" onmouseout="this.querySelector(\'h4\').style.color=\'#0d0d0d\'">'
+   var idx=SPORT_OFFSET+i+1;var last=i===items.length-1;
+   return '<a href="#news-article/'+idx+'" style="display:flex;gap:14px;padding:16px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'align-items:flex-start;text-decoration:none;" onmouseover="this.querySelector(\'h4\').style.color=\'#f59e0b\'" onmouseout="this.querySelector(\'h4\').style.color=\'#0d0d0d\'">'
     +'<div style="flex:1;min-width:0;">'
     +'<span style="font-size:9px;font-weight:800;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:5px;">'+esc(a.source.name)+'</span>'
     +'<h4 style="font-size:14px;font-weight:800;color:#0d0d0d;line-height:1.35;margin:0;transition:color 0.15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4>'
