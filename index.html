@@ -9544,8 +9544,15 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    fetch('/api/article?url='+encodeURIComponent(a.url))
     .then(function(r){return r.json();})
     .then(function(data){
-     bodyEl.style.whiteSpace='pre-line';
-     bodyEl.textContent=(data.content&&data.content.length>200)?data.content:(snippet||'');
+     var items=data.items||[];
+     var hasContent=items.some(function(x){return x.t==='p';});
+     if(!hasContent){bodyEl.style.whiteSpace='pre-line';bodyEl.textContent=snippet||'';return;}
+     bodyEl.style.whiteSpace='';
+     bodyEl.innerHTML=items.map(function(x){
+      if(x.t==='p') return '<p style="font-size:16px;line-height:1.75;color:#1a1a1a;margin:0 0 20px;">'+esc(x.v)+'</p>';
+      if(x.t==='img') return '<div style="margin:28px 0;border-radius:12px;overflow:hidden;"><img src="'+esc(imgUrl(x.v))+'" alt="'+esc(x.alt)+'" style="width:100%;display:block;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'"></div>';
+      return '';
+     }).join('');
      bodyEl.style.animation='naFadeIn 0.4s ease';
     })
     .catch(function(){bodyEl.style.whiteSpace='pre-line';bodyEl.textContent=snippet||'';});
