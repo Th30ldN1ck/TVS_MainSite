@@ -9211,7 +9211,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   var color=srcColor(a.source.name);
   var rt=readTime(a);
   var imgH=a.urlToImage?'<div style="height:420px;border-radius:16px;overflow:hidden;margin-bottom:32px;box-shadow:0 4px 24px rgba(0,0,0,0.1);"><img src="'+esc(a.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display=\'none\'"></div>':'';
-  var body=(a.description||'')+(a.content?' '+a.content.replace(/\[\+\d+ chars\]/g,'…'):'');
+  var snippet=(a.description||'')+(a.content?' '+a.content.replace(/\[\+\d+ chars\]/g,'…'):'');
   var moreH=articles.filter(function(_,i){return i!==idx;}).slice(0,4).map(function(b){
    var bi=articles.indexOf(b);
    return '<div onclick="location.hash=\'news-article/'+bi+'\';window.scrollTo(0,0)" style="display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #ebebeb;cursor:pointer;align-items:flex-start;" onmouseover="this.querySelector(\'h3\').style.color=\'#e91e8c\'" onmouseout="this.querySelector(\'h3\').style.color=\'#0d0d0d\'">'
@@ -9228,9 +9228,25 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     +'<span style="font-size:13px;color:#888;">'+rt+' min read</span>'
    +'</div>'
    +imgH
-   +'<div style="font-size:17px;color:#333;line-height:1.75;margin-bottom:36px;">'+esc(body)+'</div>'
+   +'<div id="na-article-body" style="font-size:17px;color:#333;line-height:1.75;margin-bottom:36px;white-space:pre-line;">'+esc(snippet)+'</div>'
    +'<a href="'+esc(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:#e91e8c;color:white;font-size:14px;font-weight:800;padding:14px 28px;border-radius:50px;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity=\'0.85\'" onmouseout="this.style.opacity=\'1\'">Read Full Article on '+esc(a.source.name)+' <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
    +(moreH?'<div style="margin-top:52px;"><div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;"><div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div><h2 style="font-size:18px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">More Entertainment</h2></div>'+moreH+'</div>':'');
+  // Fetch full article content in background
+  var bodyEl=document.getElementById('na-article-body');
+  if(bodyEl){
+   bodyEl.innerHTML='<span style="color:#bbb;font-size:14px;">Loading full article…</span>';
+   fetch('/api/article?url='+encodeURIComponent(a.url))
+    .then(function(r){return r.json();})
+    .then(function(data){
+     if(data.content&&data.content.length>200){
+      bodyEl.textContent=data.content;
+      bodyEl.style.animation='naFadeIn 0.4s ease';
+     } else {
+      bodyEl.textContent=snippet;
+     }
+    })
+    .catch(function(){bodyEl.textContent=snippet;});
+  }
  };
 
  /* ── Spotlight grid hydration ── */
