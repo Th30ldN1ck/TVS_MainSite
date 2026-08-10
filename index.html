@@ -4082,17 +4082,17 @@
       </a>
      </div>
     </div>
-    <!-- Category pills -->
+    <!-- Category pills — each links to its genre hub page -->
     <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;">
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:#e91e8c;color:white;font-size:11px;font-weight:800;letter-spacing:0.06em;border:none;cursor:pointer;">ALL</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">FILM</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">SERIES</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">SPORT</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">ORIGINALS</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">LIFESTYLE</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">CULTURE</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">TRUE CRIME</button>
-     <button style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;cursor:pointer;">MUSIC</button>
+     <a href="#magazine" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:#e91e8c;color:white;font-size:11px;font-weight:800;letter-spacing:0.06em;text-decoration:none;">ALL</a>
+     <a href="#genre/film" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">FILM</a>
+     <a href="#genre/series" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">SERIES</a>
+     <a href="#genre/sport" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">SPORT</a>
+     <a href="#genre/originals" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">ORIGINALS</a>
+     <a href="#genre/lifestyle" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">LIFESTYLE</a>
+     <a href="#genre/culture" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">CULTURE</a>
+     <a href="#genre/truecrime" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">TRUE CRIME</a>
+     <a href="#genre/music" class="nav-link" style="flex-shrink:0;padding:5px 15px;border-radius:20px;background:transparent;color:#444;font-size:11px;font-weight:700;letter-spacing:0.06em;border:1px solid #ddd;text-decoration:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">MUSIC</a>
     </div>
    </div>
   </div>
@@ -4879,6 +4879,90 @@
  </div>
 </div>
 
+
+<!-- ================================================================
+ PAGE: GENRE HUB (magazine sub-genre editorial page)
+================================================================ -->
+<div id="page-genre" class="tvn-page hidden" style="background:#f7f7f9;min-height:100vh;padding-top:64px;">
+ <!-- Sticky breadcrumb -->
+ <div style="background:white;border-bottom:1px solid #e8e8e8;position:sticky;top:64px;z-index:20;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:10px;height:46px;">
+   <a href="#magazine" class="nav-link" style="font-size:12px;font-weight:600;color:#888;text-decoration:none;display:flex;align-items:center;gap:5px;" onmouseover="this.style.color='#e91e8c'" onmouseout="this.style.color='#888'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 19l-7-7 7-7"/></svg>Magazine</a>
+   <span style="color:#ddd;font-size:14px;">›</span>
+   <span id="genre-breadcrumb" style="font-size:12px;font-weight:800;color:#0d0d0d;letter-spacing:0.04em;text-transform:uppercase;"></span>
+  </div>
+ </div>
+ <!-- Hero: full-width featured article -->
+ <a id="genre-hero" href="#" style="display:block;position:relative;height:56vh;min-height:320px;max-height:560px;overflow:hidden;text-decoration:none;">
+  <img id="genre-hero-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;">
+  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.86) 0%,rgba(0,0,0,0.5) 45%,rgba(0,0,0,0.08) 100%);"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 40%);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;max-width:1280px;margin:0 auto;padding:0 32px 48px;">
+   <p id="genre-hero-cat" style="font-size:10px;font-weight:900;color:rgba(255,255,255,0.6);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 10px;"></p>
+   <h1 id="genre-hero-title" style="font-size:clamp(22px,3.5vw,38px);font-weight:900;color:white;line-height:1.15;margin:0 0 12px;letter-spacing:-0.025em;max-width:640px;"></h1>
+   <p id="genre-hero-desc" style="font-size:15px;color:rgba(255,255,255,0.72);line-height:1.6;margin:0;max-width:520px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;"></p>
+  </div>
+ </a>
+ <!-- Main content -->
+ <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+  <!-- Popular Now: horizontal scroll -->
+  <div style="margin:48px 0 0;">
+   <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+    <div id="genre-accent-1" style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+    <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Popular Now</h2>
+   </div>
+   <div id="genre-popular" style="display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;"></div>
+  </div>
+  <!-- In the News: sport-headlines layout -->
+  <div style="margin:56px 0 0;">
+   <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+    <div id="genre-accent-2" style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+    <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">In the News</h2>
+   </div>
+   <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;">
+    <a id="genre-news-featured" href="#" style="text-decoration:none;display:block;">
+     <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:340px;background:#e8e8e8;">
+      <img id="genre-news-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
+     </div>
+     <p id="genre-news-cat" style="font-size:10px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;margin:0 0 10px;color:#e91e8c;"></p>
+     <h3 id="genre-news-title" style="font-size:clamp(18px,2vw,24px);font-weight:900;color:#0d0d0d;line-height:1.2;margin:0 0 12px;letter-spacing:-0.025em;transition:color 0.15s;" onmouseover="this.style.color=document.getElementById('genre-accent-1').style.background" onmouseout="this.style.color='#0d0d0d'"></h3>
+     <p id="genre-news-desc" style="font-size:14px;color:#666;line-height:1.65;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;"></p>
+    </a>
+    <div id="genre-news-list" style="display:flex;flex-direction:column;"></div>
+   </div>
+  </div>
+  <!-- Latest Stories: spotlight-style 3-column grid -->
+  <div style="margin:56px 0 0;">
+   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+     <div id="genre-accent-3" style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Latest Stories</h2>
+    </div>
+    <a href="#magazine" class="nav-link" style="font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none;letter-spacing:0.05em;">VIEW ALL &rsaquo;</a>
+   </div>
+   <div id="genre-spotlight" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;"></div>
+  </div>
+  <!-- Videos rail -->
+  <div style="margin:56px 0 0;">
+   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+     <div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Videos</h2>
+    </div>
+    <a href="https://youtube.com/playlist?list=PL3Bg1xJM8X_DWqHw__qR12CVLHbHq3_Q7" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none;letter-spacing:0.05em;">VIEW ALL &rsaquo;</a>
+   </div>
+   <div id="genre-videos" style="display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;"></div>
+  </div>
+  <!-- Explore More: 4-column dense grid -->
+  <div style="margin:56px 0 64px;">
+   <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+    <div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
+    <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Explore More</h2>
+   </div>
+   <div id="genre-explore" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;"></div>
+  </div>
+ </div>
+</div>
 
 <!-- ================================================================
  PAGE: NEWS ARTICLE (live from NewsAPI entertainment)
@@ -6763,6 +6847,12 @@ window._tvnSupportToggle=function(btn){var topic=btn.dataset.topic;var panel=doc
  var _slug = hash.slice(8);
  if (window._renderSupportArticle) { window._renderSupportArticle(_slug); }
  else { window._pendingSASlug = _slug; }
+ } else if (hash.startsWith('genre/')) {
+ showPage('page-genre');
+ var _genre = hash.slice(6);
+ if (!window._newsFetched) { window._newsFetched = true; }
+ if (window.renderGenrePage) { window.renderGenrePage(_genre); }
+ else { window._pendingGenre = _genre; }
  } else if (hash.startsWith('news-article/')) {
  showPage('page-news-article');
  var _nidx = parseInt(hash.slice(13));
@@ -9463,6 +9553,141 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   }).join('');
  }
 
+ /* ── Genre hub config ── */
+ var GENRE_CFG={
+  film:    {label:'Film',    color:'#e91e8c', re:/movie|film|cinema|oscar|actor|actress|box.office|director|hollywood/i},
+  series:  {label:'Series',  color:'#8b5cf6', re:/series|show|season|episode|hbo|netflix|disney|amazon|streaming|sitcom/i},
+  sport:   {label:'Sport',   color:'#f59e0b', re:null, sport:true},
+  music:   {label:'Music',   color:'#8b5cf6', re:/music|song|album|singer|tour|concert|band|grammy|billboard|pop|rap|hip.hop/i},
+  culture: {label:'Culture', color:'#6366f1', re:/culture|art|fashion|style|award|celebrity|award.show/i},
+  lifestyle:{label:'Lifestyle',color:'#e91e8c',re:/lifestyle|health|wellness|travel|food|relationship/i},
+  truecrime:{label:'True Crime',color:'#6366f1',re:/crime|murder|trial|killer|prison|court|detective|investigate/i},
+  originals:{label:'Originals',color:'#e91e8c',re:/original|exclusive|premiere|new.series|new.show/i}
+ };
+ var YT_VIDS=[
+  {id:'FURpcaaqCPo',title:'SHADES เด็ก เรียบ ร้าย',cat:'Drama',c:'#e91e8c'},
+  {id:'o2xy3dPkGik',title:'Jet lag เจ๊ทแหลก SS2',cat:'Comedy',c:'#f59e0b'},
+  {id:'shDlY_ymxUA',title:'My Wife\'s Gunslinger God',cat:'Drama',c:'#e91e8c'},
+  {id:'FVKg6J1gnyQ',title:'My Chef in Crime',cat:'Comedy',c:'#f59e0b'},
+  {id:'vgQnxg7mK_g',title:'Same Name for What?',cat:'Comedy',c:'#f59e0b'},
+  {id:'UYRZ2IqKB5E',title:'แม่มดแห่งสยาม',cat:'Fantasy',c:'#6366f1'},
+  {id:'88B_t4S7TBo',title:'รักษ์',cat:'Romance',c:'#e91e8c'},
+  {id:'WTBd9FQ4KOE',title:'เฉิ่มเชย',cat:'Comedy',c:'#f59e0b'},
+  {id:'mNMo9QOZZiU',title:'สายลับรถแห่',cat:'Action',c:'#6366f1'},
+  {id:'g8gdG-3XQ0M',title:'เพชรประกาย',cat:'Drama',c:'#e91e8c'},
+  {id:'SoO9npr29Mo',title:'เจ้าครัว',cat:'Drama',c:'#e91e8c'},
+  {id:'oZH06BJD3uM',title:'น้องเอ๋ย...พี่เอ่ย',cat:'Drama',c:'#e91e8c'},
+  {id:'1Zz8VLn6AY4',title:'สนุกแบบไทย..is NOW',cat:'Originals',c:'#8b5cf6'}
+ ];
+ function getArtIdx(a){
+  var ta=window._tnArticles||[];
+  for(var i=0;i<ta.length;i++){if(ta[i]===a)return i;}
+  return 0;
+ }
+ function setAccents(color){
+  ['genre-accent-1','genre-accent-2','genre-accent-3'].forEach(function(id){
+   var el=document.getElementById(id);if(el)el.style.background=color;
+  });
+  var nc=document.getElementById('genre-news-cat');if(nc)nc.style.color=color;
+ }
+ window.renderGenrePage=function(genre){
+  var cfg=GENRE_CFG[genre]||{label:genre.charAt(0).toUpperCase()+genre.slice(1),color:'#e91e8c',re:null};
+  /* breadcrumb */
+  var bc=document.getElementById('genre-breadcrumb');if(bc)bc.textContent=cfg.label;
+  setAccents(cfg.color);
+  /* pick articles */
+  var allArts=(window._tnArticles||[]).filter(Boolean);
+  var spArts=(window._tnSportArticles||[]).filter(Boolean);
+  var arts;
+  if(cfg.sport){arts=spArts;}
+  else if(cfg.re){
+   arts=allArts.filter(function(a){return cfg.re.test((a.title||'')+' '+(a.description||'')+' '+(a.source&&a.source.name||''));});
+   if(arts.length<4)arts=allArts;
+  }else{arts=allArts;}
+  if(!arts.length){
+   var bc2=document.getElementById('genre-breadcrumb');
+   if(bc2)bc2.textContent=cfg.label+' — check back soon';
+   return;
+  }
+  /* ── Hero ── */
+  var a0=arts[0];
+  var heroEl=document.getElementById('genre-hero');if(heroEl)heroEl.href='#news-article/'+getArtIdx(a0);
+  var hImg=document.getElementById('genre-hero-img');if(hImg&&a0.urlToImage)hImg.src=a0.urlToImage;
+  var hCat=document.getElementById('genre-hero-cat');if(hCat)hCat.textContent=cfg.label+' · '+(a0.source&&a0.source.name||'');
+  var hTitle=document.getElementById('genre-hero-title');if(hTitle)hTitle.textContent=a0.title;
+  var hDesc=document.getElementById('genre-hero-desc');if(hDesc)hDesc.textContent=a0.description||'';
+  /* ── Popular Now rail ── */
+  var popEl=document.getElementById('genre-popular');
+  if(popEl){
+   var popArts=arts.slice(1,7);
+   var playBtn='<div style="position:absolute;inset:0;background:rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;"></div>';
+   popEl.innerHTML=popArts.map(function(a){
+    var idx=getArtIdx(a);var col=srcColor(a.source&&a.source.name||'');var img=a.urlToImage||'';
+    return '<div style="flex-shrink:0;width:230px;background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 6px 24px rgba(0,0,0,0.12)\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.boxShadow=\'0 1px 8px rgba(0,0,0,0.06)\';this.style.transform=\'translateY(0)\'">'
+     +(img?'<div style="height:148px;overflow:hidden;background:#eee;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"></div>':'<div style="height:148px;background:#eee;"></div>')
+     +'<div style="padding:14px 16px 16px;"><span style="font-size:9px;font-weight:800;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source&&a.source.name||'')+'</span>'
+     +'<h3 style="font-size:13px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:5px 0 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h3></div></div>';
+   }).join('');
+  }
+  /* ── In the News ── */
+  var nArt=arts[Math.min(7,arts.length-1)]||arts[0];
+  var nFeat=document.getElementById('genre-news-featured');if(nFeat)nFeat.href='#news-article/'+getArtIdx(nArt);
+  var nImg=document.getElementById('genre-news-img');if(nImg&&nArt.urlToImage)nImg.src=nArt.urlToImage;
+  var nCat=document.getElementById('genre-news-cat');if(nCat)nCat.textContent=nArt.source&&nArt.source.name||'';
+  var nTitle=document.getElementById('genre-news-title');if(nTitle)nTitle.textContent=nArt.title;
+  var nDesc=document.getElementById('genre-news-desc');if(nDesc)nDesc.textContent=nArt.description||'';
+  var nList=document.getElementById('genre-news-list');
+  if(nList){
+   var listArts=arts.slice(Math.min(8,arts.length-4)).slice(0,4);
+   if(!listArts.length)listArts=arts.slice(1,5);
+   nList.innerHTML=listArts.map(function(a,i){
+    var last=i===listArts.length-1;var idx=getArtIdx(a);
+    return '<a href="#news-article/'+idx+'" style="display:flex;gap:14px;padding:16px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'align-items:flex-start;text-decoration:none;" onmouseover="this.querySelector(\'h4\').style.color=\''+cfg.color+'\'" onmouseout="this.querySelector(\'h4\').style.color=\'#0d0d0d\'">'
+     +'<div style="flex:1;min-width:0;"><span style="font-size:9px;font-weight:800;color:'+cfg.color+';letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:5px;">'+esc(a.source&&a.source.name||'')+'</span>'
+     +'<h4 style="font-size:14px;font-weight:800;color:#0d0d0d;line-height:1.35;margin:0;transition:color 0.15s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4></div>'
+     +(a.urlToImage?'<div style="flex-shrink:0;width:84px;height:64px;border-radius:8px;overflow:hidden;background:#eee;"><img src="'+esc(a.urlToImage)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"></div>':'')
+     +'</a>';
+   }).join('');
+  }
+  /* ── Latest Stories spotlight grid ── */
+  var spotEl=document.getElementById('genre-spotlight');
+  if(spotEl){
+   var spotArts=arts.slice(3,6).filter(Boolean);if(!spotArts.length)spotArts=arts.slice(0,3);
+   spotEl.innerHTML=spotArts.map(function(a){
+    var idx=getArtIdx(a);var col=srcColor(a.source&&a.source.name||'');var img=a.urlToImage||'';
+    return '<div style="background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 6px 24px rgba(0,0,0,0.12)\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.boxShadow=\'0 1px 8px rgba(0,0,0,0.06)\';this.style.transform=\'translateY(0)\'">'
+     +(img?'<div style="height:200px;overflow:hidden;background:#eee;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'" onerror="this.style.display=\'none\'"></div>':'<div style="height:200px;background:#eee;"></div>')
+     +'<div style="padding:18px 20px 20px;"><span style="font-size:10px;font-weight:800;color:'+col+';letter-spacing:0.12em;text-transform:uppercase;">'+esc(a.source&&a.source.name||'')+'</span>'
+     +'<h3 style="font-size:16px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:6px 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h3>'
+     +'<p style="font-size:13px;color:#777;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.description||'')+'</p></div></div>';
+   }).join('');
+  }
+  /* ── Videos rail ── */
+  var vidEl=document.getElementById('genre-videos');
+  if(vidEl){
+   var pb='<div style="position:absolute;inset:0;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;"><div style="width:44px;height:44px;border-radius:50%;background:rgba(233,30,140,0.9);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(233,30,140,0.5);"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div>';
+   vidEl.innerHTML=YT_VIDS.map(function(v){
+    return '<a href="https://www.youtube.com/watch?v='+v.id+'" target="_blank" rel="noopener" style="flex-shrink:0;width:220px;background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06);text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow=\'0 6px 24px rgba(0,0,0,0.12)\';this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.boxShadow=\'0 1px 8px rgba(0,0,0,0.06)\';this.style.transform=\'translateY(0)\'">'
+     +'<div style="position:relative;height:130px;overflow:hidden;background:#111;"><img src="https://img.youtube.com/vi/'+v.id+'/mqdefault.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">'+pb+'</div>'
+     +'<div style="padding:12px 14px 14px;"><span style="font-size:9px;font-weight:800;color:'+v.c+';letter-spacing:0.1em;text-transform:uppercase;">'+v.cat+'</span>'
+     +'<h3 style="font-size:13px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:5px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+v.title+'</h3></div></a>';
+   }).join('');
+  }
+  /* ── Explore More 4-col grid ── */
+  var explEl=document.getElementById('genre-explore');
+  if(explEl){
+   var explArts=arts.slice(0,8).filter(Boolean);
+   explEl.innerHTML=explArts.map(function(a){
+    var idx=getArtIdx(a);var col=srcColor(a.source&&a.source.name||'');var img=a.urlToImage||'';
+    return '<div style="background:white;border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s;" onclick="location.hash=\'news-article/'+idx+'\'" onmouseover="this.style.boxShadow=\'0 4px 18px rgba(0,0,0,0.1)\'" onmouseout="this.style.boxShadow=\'0 1px 6px rgba(0,0,0,0.05)\'">'
+     +(img?'<div style="height:140px;overflow:hidden;background:#eee;"><img src="'+esc(img)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'"></div>':'<div style="height:140px;background:#eee;"></div>')
+     +'<div style="padding:12px 14px 14px;"><span style="font-size:9px;font-weight:800;color:'+col+';letter-spacing:0.1em;text-transform:uppercase;">'+esc(a.source&&a.source.name||'')+'</span>'
+     +'<h4 style="font-size:13px;font-weight:800;color:#0d0d0d;line-height:1.3;margin:5px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">'+esc(a.title)+'</h4></div></div>';
+   }).join('');
+  }
+  if(typeof window._pendingGenre==='string'){delete window._pendingGenre;}
+ };
+
  /* ── Sport section hydration ── */
  var SPORT_OFFSET=50;
  function hydrateSport(articles){
@@ -9507,6 +9732,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     hydrateHero(arts);hydrateSpotlight(arts);hydrateLatest(arts);
     hydrateMostRead(arts);hydrateExplore(arts);
     if(typeof window._pendingNAIdx==='number'){window._renderNewsArticle(window._pendingNAIdx);delete window._pendingNAIdx;}
+    if(location.hash.startsWith('#genre/')&&window.renderGenrePage)window.renderGenrePage(location.hash.slice(7));
    })
    .catch(function(){/* keep hardcoded content on error */});
  }
@@ -9521,17 +9747,20 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
     window._tnSportArticles=arts;
     hydrateSport(arts);
+    if(location.hash.startsWith('#genre/')&&window.renderGenrePage)window.renderGenrePage(location.hash.slice(7));
    })
    .catch(function(){});
  }
 
  window.addEventListener('hashchange',function(){
   var h=location.hash;
-  if((h==='#magazine'||h.startsWith('#news-article/'))&&!fetched)loadNews();
-  if(h==='#magazine'&&!sportFetched)loadSport();
+  var onMag=h==='#magazine';var onArt=h.startsWith('#news-article/');var onGenre=h.startsWith('#genre/');
+  if((onMag||onArt||onGenre)&&!fetched)loadNews();
+  if((onMag||onGenre)&&!sportFetched)loadSport();
  });
- if(location.hash==='#magazine'||location.hash.startsWith('#news-article/'))loadNews();
- if(location.hash==='#magazine')loadSport();
+ var _h=location.hash;
+ if(_h==='#magazine'||_h.startsWith('#news-article/')||_h.startsWith('#genre/'))loadNews();
+ if(_h==='#magazine'||_h.startsWith('#genre/'))loadSport();
 })();
 </script>
 </body>
