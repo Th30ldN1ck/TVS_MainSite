@@ -9858,7 +9858,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   if(featCat)featCat.textContent=a0.source.name;
   var list=document.getElementById('cms-sport-list');
   if(!list)return;
-  var items=articles.slice(1,5);
+  var items=articles.slice(1,6);
   list.innerHTML=items.map(function(a,i){
    var idx=SPORT_OFFSET+i+1;var last=i===items.length-1;
    return '<a href="#news-article/'+idx+'" style="display:flex;gap:14px;padding:16px 0;'+(last?'':'border-bottom:1px solid #ebebeb;')+'align-items:flex-start;text-decoration:none;" onmouseover="this.querySelector(\'h4\').style.color=\'#f59e0b\'" onmouseout="this.querySelector(\'h4\').style.color=\'#0d0d0d\'">'
