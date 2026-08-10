@@ -434,6 +434,41 @@
  pointer-events: none;
  z-index: 5;
  }
+
+ /* ── Mobile responsive overrides (inline styles need !important) ── */
+ @media (max-width: 1024px) {
+  /* Magazine hero: stack */
+  .tvn-mag-hero-grid { grid-template-columns: 1fr !important; }
+  /* Magazine spotlight: 2 cols */
+  #cms-mag-spotlight { grid-template-columns: repeat(2,1fr) !important; }
+  /* Magazine sport section: stack */
+  .tvn-sport-grid { grid-template-columns: 1fr !important; }
+  /* Magazine latest+sidebar: stack */
+  .tvn-latest-sidebar-grid { grid-template-columns: 1fr !important; }
+  /* Magazine explore: 2 cols */
+  #cms-mag-explore { grid-template-columns: repeat(2,1fr) !important; }
+  /* Genre hero: unfix 2-column grid */
+  .tvn-genre-hero-grid { grid-template-columns: 1fr !important; height: auto !important; }
+  .tvn-genre-hero-grid > a:first-child { height: 360px; }
+  .tvn-genre-hero-right { flex-direction: row !important; height: 180px !important; }
+  /* Genre In the News: stack */
+  .tvn-genre-news-grid { grid-template-columns: 1fr !important; }
+  /* Genre spotlight: 2 cols */
+  #genre-spotlight { grid-template-columns: repeat(2,1fr) !important; }
+  /* Genre explore: 2 cols */
+  #genre-explore { grid-template-columns: repeat(2,1fr) !important; }
+ }
+
+ @media (max-width: 640px) {
+  /* Genre hero featured card: shorter on phones */
+  .tvn-genre-hero-grid > a:first-child { height: 260px !important; }
+  /* Genre hero right: stack vertically on phones */
+  .tvn-genre-hero-right { flex-direction: column !important; height: 250px !important; }
+  /* Magazine + genre spotlight: 1 col on phones */
+  #cms-mag-spotlight, #genre-spotlight { grid-template-columns: 1fr !important; }
+  /* Coming Soon carousel: shorter on phones */
+  #mcs-root { height: 320px !important; }
+ }
  </style>
 </head>
 
@@ -4101,7 +4136,7 @@
   <div style="max-width:1280px;margin:0 auto;padding:32px 24px 80px;">
 
    <!-- HERO: Featured article + 2 side teasers -->
-   <div style="display:grid;grid-template-columns:1fr 380px;gap:4px;border-radius:20px;overflow:hidden;margin-bottom:40px;box-shadow:0 2px 20px rgba(0,0,0,0.08);" class="max-lg:grid-cols-1">
+   <div style="display:grid;grid-template-columns:1fr 380px;gap:4px;border-radius:20px;overflow:hidden;margin-bottom:40px;box-shadow:0 2px 20px rgba(0,0,0,0.08);" class="tvn-mag-hero-grid">
     <!-- Left: big image + overlay -->
     <div style="position:relative;min-height:480px;overflow:hidden;cursor:pointer;" class="group">
      <img id="cms-mag-hero-img" src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&q=80" alt="Hero" style="width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
@@ -4208,7 +4243,7 @@
      <div style="width:4px;height:28px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
      <h2 style="font-size:clamp(22px,3vw,30px);font-weight:900;color:#0d0d0d;letter-spacing:-0.03em;margin:0;">Sport Headlines</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="max-lg:grid-cols-1">
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="tvn-sport-grid">
      <!-- Featured left -->
      <a id="cms-sport-featured" href="#" style="text-decoration:none;display:block;cursor:pointer;">
       <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:380px;background:#e8e8e8;">
@@ -4383,7 +4418,7 @@
    </script>
 
    <!-- LATEST STORIES + SIDEBAR -->
-   <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;margin-bottom:48px;" class="max-lg:grid-cols-1">
+   <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;margin-bottom:48px;" class="tvn-latest-sidebar-grid">
     <!-- Latest stories list -->
     <div>
      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
@@ -4918,7 +4953,7 @@
  </div>
  <!-- Hero: 3-card layout -->
  <div style="max-width:1280px;margin:0 auto;padding:20px 24px 0;">
-  <div style="display:grid;grid-template-columns:1fr 360px;gap:12px;height:460px;">
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:12px;height:460px;" class="tvn-genre-hero-grid">
    <!-- Left: large featured card -->
    <a id="genre-hero" href="#" style="position:relative;border-radius:16px;overflow:hidden;display:block;text-decoration:none;background:#111;">
     <img id="genre-hero-img" src="" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
@@ -4939,7 +4974,7 @@
     </div>
    </a>
    <!-- Right: 2 stacked cards -->
-   <div style="display:flex;flex-direction:column;gap:12px;">
+   <div style="display:flex;flex-direction:column;gap:12px;" class="tvn-genre-hero-right">
     <a id="genre-hero-r1" href="#" style="position:relative;border-radius:16px;overflow:hidden;display:block;text-decoration:none;flex:1;background:#111;">
      <img id="genre-hero-r1-img" src="" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.75) 100%);"></div>
@@ -4981,9 +5016,9 @@
     <div id="genre-accent-2" style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">In the News</h2>
    </div>
-   <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;">
+   <div style="display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;" class="tvn-genre-news-grid">
     <a id="genre-news-featured" href="#" style="text-decoration:none;display:block;">
-     <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:340px;background:#e8e8e8;">
+     <div style="border-radius:14px;overflow:hidden;margin-bottom:18px;height:340px;background:#e8e8e8;" class="max-sm:h-52">
       <img id="genre-news-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" onerror="this.style.display='none'">
      </div>
      <p id="genre-news-cat" style="font-size:10px;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;margin:0 0 10px;color:#e91e8c;"></p>
@@ -5002,7 +5037,7 @@
     </div>
     <a href="#magazine" class="nav-link" style="font-size:12px;font-weight:700;color:#e91e8c;text-decoration:none;letter-spacing:0.05em;">VIEW ALL &rsaquo;</a>
    </div>
-   <div id="genre-spotlight" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;"></div>
+   <div id="genre-spotlight" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="max-md:grid-cols-1 max-lg:grid-cols-2"></div>
   </div>
   <!-- Videos rail -->
   <div style="margin:56px 0 0;">
@@ -5021,7 +5056,7 @@
     <div style="width:4px;height:22px;background:#e91e8c;border-radius:2px;"></div>
     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Explore More</h2>
    </div>
-   <div id="genre-explore" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;"></div>
+   <div id="genre-explore" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="max-sm:grid-cols-2 max-md:grid-cols-2 max-lg:grid-cols-3"></div>
   </div>
  </div>
 </div>
