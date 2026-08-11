@@ -483,6 +483,11 @@
   .tvn-tab-follow { display: none !important; }
   /* Main content padding on phones */
   .tvn-mag-content { padding: 20px 16px 60px !important; }
+  /* Sport section: compact on phones */
+  .tvn-sport-section { margin-bottom: 28px !important; }
+  #cms-sport-featured > div:first-child { height: 220px !important; }
+  #cms-sport-title { font-size: 18px !important; display:-webkit-box !important;-webkit-line-clamp:2 !important;-webkit-box-orient:vertical !important;overflow:hidden !important; }
+  #cms-sport-desc { display: none !important; }
  }
  </style>
 </head>
@@ -4246,7 +4251,7 @@
    </div>
 
    <!-- SPORT NEWS SECTION -->
-   <div style="margin-bottom:56px;">
+   <div class="tvn-sport-section" style="margin-bottom:56px;">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
      <div style="display:flex;align-items:center;gap:12px;">
       <div style="width:4px;height:28px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
