@@ -5082,6 +5082,23 @@
     <div id="genre-news-list" style="display:flex;flex-direction:column;"></div>
    </div>
   </div>
+  <!-- Fixtures: shown only on sport genre -->
+  <div id="genre-fix-section" style="margin:56px 0 0;display:none;">
+   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+     <div style="width:4px;height:22px;background:#f59e0b;border-radius:2px;flex-shrink:0;"></div>
+     <h2 style="font-size:20px;font-weight:900;color:#0d0d0d;letter-spacing:-0.02em;margin:0;">Scores &amp; Fixtures</h2>
+     <span style="font-size:9px;font-weight:800;color:#166534;background:#f0fdf4;padding:3px 9px;border-radius:20px;letter-spacing:0.1em;text-transform:uppercase;">Soccer</span>
+    </div>
+    <div style="display:flex;gap:6px;">
+     <button onclick="genreFixPrev()" style="width:34px;height:34px;border-radius:50%;background:#f5f5f5;border:1px solid #e0e0e0;color:#666;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background 0.15s,color 0.15s;" onmouseover="this.style.background='#f59e0b';this.style.color='white';this.style.borderColor='#f59e0b'" onmouseout="this.style.background='#f5f5f5';this.style.color='#666';this.style.borderColor='#e0e0e0'">&lsaquo;</button>
+     <button onclick="genreFixNext()" style="width:34px;height:34px;border-radius:50%;background:#f59e0b;border:1px solid #f59e0b;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">&rsaquo;</button>
+    </div>
+   </div>
+   <div style="overflow:hidden;">
+    <div id="genre-fix-track" style="display:flex;gap:12px;transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;"></div>
+   </div>
+  </div>
   <!-- Latest Stories: spotlight-style 3-column grid -->
   <div style="margin:56px 0 0;">
    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
@@ -9847,6 +9864,18 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
      +'</a>';
    }).join('');
   }
+  /* ── Fixtures section: sport genre only ── */
+  var gfSec=document.getElementById('genre-fix-section');
+  if(gfSec){
+   if(genre==='sport'){
+    gfSec.style.display='';
+    if(window._fixEvents&&window._fixEvents.length&&window._renderFixTrack){
+     window._renderFixTrack('genre-fix-track',window._fixEvents);
+    }else if(!fixFetched){loadFixtures();}
+   }else{
+    gfSec.style.display='none';
+   }
+  }
   /* ── Latest Stories spotlight grid ── */
   var spotEl=document.getElementById('genre-spotlight');
   if(spotEl){
@@ -10006,16 +10035,33 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    _fixOff=Math.max(0,_fixOff-_fixW*2);
    var tr=document.getElementById('fix-track');if(tr)tr.style.transform='translateX(-'+_fixOff+'px)';
   };
+  window._renderFixTrack=function(trackId,evs){
+   var tr=document.getElementById(trackId);
+   if(tr)tr.innerHTML=evs.map(fixCard).join('');
+  };
+  var _gfOff=0;
+  window.genreFixNext=function(){
+   var tr=document.getElementById('genre-fix-track');if(!tr)return;
+   var max=Math.max(0,tr.scrollWidth-tr.parentElement.offsetWidth);
+   _gfOff=Math.min(_gfOff+_fixW*2,max);
+   tr.style.transform='translateX(-'+_gfOff+'px)';
+  };
+  window.genreFixPrev=function(){
+   _gfOff=Math.max(0,_gfOff-_fixW*2);
+   var tr=document.getElementById('genre-fix-track');if(tr)tr.style.transform='translateX(-'+_gfOff+'px)';
+  };
   fetch('/api/fixtures')
    .then(function(r){return r.json();})
    .then(function(data){
-    var evs=(data.events||[]).slice(0,20);
+    var evs=(data.events||[]).slice(0,40);
     if(!evs.length)return;
+    window._fixEvents=evs;
     var tr=document.getElementById('fix-track');
     var sec=document.getElementById('fix-section');
-    if(!tr||!sec)return;
-    tr.innerHTML=evs.map(fixCard).join('');
-    sec.style.display='';
+    if(tr&&sec){tr.innerHTML=evs.map(fixCard).join('');sec.style.display='';}
+    // also populate genre page fixture section if sport is active
+    var gfSec=document.getElementById('genre-fix-section');
+    if(gfSec&&gfSec.style.display!=='none')window._renderFixTrack('genre-fix-track',evs);
    })
    .catch(function(){});
  }
@@ -10023,14 +10069,15 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
  window.addEventListener('hashchange',function(){
   var h=location.hash;
   var onMag=h==='#magazine';var onArt=h.startsWith('#news-article/');var onGenre=h.startsWith('#genre/');
+  var onSport=h==='#genre/sport';
   if((onMag||onArt||onGenre)&&!fetched)loadNews();
   if((onMag||onGenre)&&!sportFetched)loadSport();
-  if(onMag&&!fixFetched)loadFixtures();
+  if((onMag||onSport)&&!fixFetched)loadFixtures();
  });
  var _h=location.hash;
  if(_h==='#magazine'||_h.startsWith('#news-article/')||_h.startsWith('#genre/'))loadNews();
  if(_h==='#magazine'||_h.startsWith('#genre/'))loadSport();
- if(_h==='#magazine')loadFixtures();
+ if(_h==='#magazine'||_h==='#genre/sport')loadFixtures();
 })();
 </script>
 </body>
