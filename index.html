@@ -492,8 +492,11 @@
   .mcs-slide-inner { left: 16px !important; right: 16px !important; max-width: none !important; }
   .mcs-title { font-size: 26px !important; margin-bottom: 12px !important; }
   .mcs-cd-row { gap: 3px !important; margin-bottom: 14px !important; transform: scale(0.82); transform-origin: left center; }
-  /* Hide prev/next arrows on phones — use dots */
+  /* Hide prev/next arrows on phones — use dots/swipe */
   #mcs-root > button[onclick*="Prev"], #mcs-root > button[onclick*="Next"] { display: none !important; }
+  /* CTA buttons: force single row on phones */
+  .mcs-cta-row { flex-wrap: nowrap !important; gap: 6px !important; }
+  .mcs-cta-row > button { padding: 9px 12px !important; font-size: 11px !important; }
  }
  </style>
 </head>
@@ -4313,7 +4316,7 @@
          <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
          <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
         </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <div class="mcs-cta-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
          <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -4341,7 +4344,7 @@
          <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
          <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
         </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <div class="mcs-cta-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
          <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -4369,7 +4372,7 @@
          <span style="color:rgba(255,255,255,0.22);font-size:28px;font-weight:200;line-height:60px;">:</span>
          <div style="text-align:center;"><div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.14);border-radius:10px;width:62px;height:60px;display:flex;align-items:center;justify-content:center;"><b style="font-size:27px;font-weight:900;color:white;font-variant-numeric:tabular-nums;line-height:1;">00</b></div><p style="font-size:8px;font-weight:800;color:rgba(255,255,255,0.38);letter-spacing:0.14em;margin:5px 0 0;text-transform:uppercase;">SECS</p></div>
         </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <div class="mcs-cta-row" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>My List</button>
          <button style="display:flex;align-items:center;gap:8px;padding:11px 24px;border-radius:50px;background:white;border:none;color:#0d0d0d;font-size:13px;font-weight:800;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.87'" onmouseout="this.style.opacity='1'"><svg width="10" height="13" viewBox="0 0 14 18" fill="#0d0d0d"><path d="M2 1l11 8-11 8z"/></svg>Watch</button>
          <button style="display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:50px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);color:white;font-size:13px;font-weight:700;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Explore<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
@@ -4436,6 +4439,19 @@
     setInterval(function(){if(!paused)goTo(cur+1);},8000);
     setInterval(updateCd,1000);
     updateCd();
+    // Touch swipe
+    var mcsRoot=document.getElementById('mcs-root');
+    if(mcsRoot){
+     var _tx=0,_ty=0;
+     mcsRoot.addEventListener('touchstart',function(e){_tx=e.touches[0].clientX;_ty=e.touches[0].clientY;},{passive:true});
+     mcsRoot.addEventListener('touchend',function(e){
+      var dx=e.changedTouches[0].clientX-_tx;
+      var dy=e.changedTouches[0].clientY-_ty;
+      if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){
+       if(dx<0)goTo(cur+1);else goTo(cur-1);
+      }
+     },{passive:true});
+    }
    })();
    </script>
 
