@@ -468,6 +468,12 @@
   #cms-mag-spotlight, #genre-spotlight { grid-template-columns: 1fr !important; }
   /* Coming Soon carousel: shorter on phones */
   #mcs-root { height: 320px !important; }
+  /* Magazine home hero: shorter on phones */
+  .tvn-mag-hero-grid > div:first-child { min-height: 320px !important; }
+  /* Hide Follow icons in tab bar on phones */
+  .tvn-tab-follow { display: none !important; }
+  /* Main content padding on phones */
+  .tvn-mag-content { padding: 20px 16px 60px !important; }
  }
  </style>
 </head>
@@ -4113,7 +4119,7 @@
      <a href="#genre/truecrime" class="nav-link" style="flex-shrink:0;display:flex;align-items:center;padding:0 16px;font-size:12px;font-weight:600;color:#666;letter-spacing:0.06em;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" onmouseover="this.style.color='#0d0d0d'" onmouseout="this.style.color='#666'">TRUE CRIME</a>
      <a href="#genre/music" class="nav-link" style="flex-shrink:0;display:flex;align-items:center;padding:0 16px;font-size:12px;font-weight:600;color:#666;letter-spacing:0.06em;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" onmouseover="this.style.color='#0d0d0d'" onmouseout="this.style.color='#666'">MUSIC</a>
     </div>
-    <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;padding-left:16px;">
+    <div class="tvn-tab-follow" style="display:flex;align-items:center;gap:6px;flex-shrink:0;padding-left:16px;">
      <span style="font-size:11px;color:#aaa;">Follow</span>
      <a href="#" style="width:26px;height:26px;border-radius:50%;background:#f2f2f2;display:flex;align-items:center;justify-content:center;text-decoration:none;">
       <svg width="11" height="11" viewBox="0 0 24 24" fill="#555"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
@@ -4126,7 +4132,7 @@
   </div>
 
   <!-- ── Main content ── -->
-  <div style="max-width:1280px;margin:0 auto;padding:32px 24px 80px;">
+  <div style="max-width:1280px;margin:0 auto;padding:32px 24px 80px;" class="tvn-mag-content">
 
    <!-- HERO: Featured article + 2 side teasers -->
    <div style="display:grid;grid-template-columns:1fr 380px;gap:4px;border-radius:20px;overflow:hidden;margin-bottom:40px;box-shadow:0 2px 20px rgba(0,0,0,0.08);" class="tvn-mag-hero-grid">
@@ -4139,7 +4145,7 @@
      </div>
      <div style="position:absolute;bottom:28px;left:28px;right:28px;">
       <span id="cms-mag-hero-cat" style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:0.08em;text-transform:uppercase;">Film &bull; July 2025</span>
-      <h2 id="cms-mag-hero-title" style="font-size:28px;font-weight:900;color:white;line-height:1.2;margin:8px 0 10px;letter-spacing:-0.02em;">The Best New Shows Coming to TrueVisions NOW This Month</h2>
+      <h2 id="cms-mag-hero-title" style="font-size:clamp(17px,4vw,28px);font-weight:900;color:white;line-height:1.2;margin:8px 0 10px;letter-spacing:-0.02em;">The Best New Shows Coming to TrueVisions NOW This Month</h2>
       <p id="cms-mag-hero-excerpt" style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5;margin:0 0 16px;">From gripping thrillers to heartwarming dramas — here's everything you need to add to your watchlist right now.</p>
       <div style="display:flex;align-items:center;gap:8px;">
        <div style="width:28px;height:28px;border-radius:50%;background:#e91e8c;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -4934,7 +4940,7 @@
     <a href="#genre/truecrime" id="gtab-truecrime" class="nav-link" style="flex-shrink:0;display:flex;align-items:center;padding:0 16px;font-size:12px;font-weight:600;color:#666;letter-spacing:0.06em;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" onmouseover="if(!this.classList.contains('gtab-active'))this.style.color='#0d0d0d'" onmouseout="if(!this.classList.contains('gtab-active'))this.style.color='#666'">TRUE CRIME</a>
     <a href="#genre/music" id="gtab-music" class="nav-link" style="flex-shrink:0;display:flex;align-items:center;padding:0 16px;font-size:12px;font-weight:600;color:#666;letter-spacing:0.06em;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;" onmouseover="if(!this.classList.contains('gtab-active'))this.style.color='#0d0d0d'" onmouseout="if(!this.classList.contains('gtab-active'))this.style.color='#666'">MUSIC</a>
    </div>
-   <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;padding-left:16px;">
+   <div class="tvn-tab-follow" style="display:flex;align-items:center;gap:6px;flex-shrink:0;padding-left:16px;">
     <span style="font-size:11px;color:#aaa;">Follow</span>
     <a href="#" style="width:26px;height:26px;border-radius:50%;background:#f2f2f2;display:flex;align-items:center;justify-content:center;text-decoration:none;">
      <svg width="11" height="11" viewBox="0 0 24 24" fill="#555"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
@@ -9531,7 +9537,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    +'<hr style="border:none;border-top:1px solid #e5e5e5;margin:0 0 20px;">'
    +'<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:28px;">'
    +'<div>'
-   +(a.author?'<p style="font-size:13px;color:#333;font-weight:600;margin:0 0 2px;">By '+esc(a.author.split(',')[0])+'</p>':'')
+   +(a.author&&!a.author.startsWith('http')?'<p style="font-size:13px;color:#333;font-weight:600;margin:0 0 2px;">By '+esc(a.author.split(',')[0])+'</p>':'')
    +'<p style="font-size:12px;color:#999;margin:0;">'+fmtDate(a.publishedAt)+' · '+rt+' min read</p>'
    +'</div>'
    +'<a href="'+esc(a.url)+'" target="_blank" rel="noopener" style="font-size:12px;color:'+color+';font-weight:700;text-decoration:none;white-space:nowrap;padding-top:2px;">'+esc(a.source.name)+' ↗</a>'
@@ -9609,7 +9615,8 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   var hCat=document.getElementById('cms-mag-hero-cat');if(hCat)hCat.textContent=a0.source.name+' · '+fmtDate(a0.publishedAt);
   var hTitle=document.getElementById('cms-mag-hero-title');if(hTitle)hTitle.textContent=a0.title;
   var hExc=document.getElementById('cms-mag-hero-excerpt');if(hExc)hExc.textContent=a0.description||'';
-  var hBy=document.getElementById('cms-mag-hero-byline');if(hBy)hBy.textContent='By '+(a0.author?a0.author.split(',')[0]:a0.source.name)+' · '+readTime(a0)+' min read';
+  var hBy=document.getElementById('cms-mag-hero-byline');
+  if(hBy){var _auth=a0.author&&!a0.author.startsWith('http')?a0.author.split(',')[0]:a0.source.name;hBy.textContent='By '+_auth+' · '+readTime(a0)+' min read';}
   // Teaser 1
   if(a1){
    var t1=document.getElementById('cms-mag-t1-img');
@@ -9742,7 +9749,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   var hCat=document.getElementById('genre-hero-cat');if(hCat)hCat.textContent=(a0.source&&a0.source.name||'')+' · '+fmtDate(a0.publishedAt||'');
   var hTitle=document.getElementById('genre-hero-title');if(hTitle)hTitle.textContent=a0.title;
   var hDesc=document.getElementById('genre-hero-desc');if(hDesc)hDesc.textContent=a0.description||'';
-  var hByline=document.getElementById('genre-hero-byline');if(hByline)hByline.textContent=(a0.author?'By '+a0.author.split(',')[0]+' · ':'')+readTime(a0)+' min read';
+  var hByline=document.getElementById('genre-hero-byline');if(hByline){var _gauth=a0.author&&!a0.author.startsWith('http')?'By '+a0.author.split(',')[0]+' · ':'';hByline.textContent=_gauth+readTime(a0)+' min read';}
   var r1El=document.getElementById('genre-hero-r1');if(r1El)r1El.href='#news-article/'+getArtIdx(a1);
   var r1Img=document.getElementById('genre-hero-r1-img');if(r1Img){r1Img.style.display='';r1Img.style.visibility='hidden';if(a1.urlToImage)r1Img.src=imgUrl(a1.urlToImage);}
   var r1Src=document.getElementById('genre-hero-r1-src');if(r1Src){r1Src.textContent=a1.source&&a1.source.name||'';r1Src.style.color=cfg.color;}
