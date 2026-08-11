@@ -6,11 +6,15 @@ export default async function handler(req, res) {
   }
   try {
     const r = await fetch(
-      'https://newsapi.org/v2/top-headlines?category=sports&language=en&pageSize=15&apiKey=' + key
+      'https://newsapi.org/v2/top-headlines?category=sports&language=en&pageSize=30&apiKey=' + key
     );
     const data = await r.json();
+    if (data.status === 'error') {
+      res.status(200).json({ status: 'error', articles: [] });
+      return;
+    }
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
     res.status(200).json(data);
   } catch (e) {
     res.status(500).json({ status: 'error', message: e.message });
