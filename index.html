@@ -474,9 +474,11 @@
   #cms-mag-hero-title { display:-webkit-box !important;-webkit-line-clamp:3 !important;-webkit-box-orient:vertical !important;overflow:hidden !important; }
   /* Hide hero excerpt on phones */
   #cms-mag-hero-excerpt { display: none !important; }
-  /* Side teasers: row side-by-side, compact height */
-  .tvn-mag-hero-grid > div:last-child { display:flex !important;flex-direction:row !important;height:160px !important; }
+  /* Side teasers: row side-by-side, same height as hero */
+  .tvn-mag-hero-grid > div:last-child { display:flex !important;flex-direction:row !important;height:320px !important; }
   .tvn-mag-hero-grid > div:last-child > div { flex:1 !important;min-height:0 !important; }
+  /* Clamp teaser titles on phones */
+  #cms-mag-t1-title, #cms-mag-t2-title { font-size:13px !important;display:-webkit-box !important;-webkit-line-clamp:3 !important;-webkit-box-orient:vertical !important;overflow:hidden !important; }
   /* Hide Follow icons in tab bar on phones */
   .tvn-tab-follow { display: none !important; }
   /* Main content padding on phones */
