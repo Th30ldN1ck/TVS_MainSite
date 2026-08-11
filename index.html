@@ -470,6 +470,11 @@
   #mcs-root { height: 320px !important; }
   /* Magazine home hero: shorter on phones */
   .tvn-mag-hero-grid > div:first-child { min-height: 320px !important; }
+  /* Clamp hero title to 3 lines on phones */
+  #cms-mag-hero-title { display:-webkit-box !important;-webkit-line-clamp:3 !important;-webkit-box-orient:vertical !important;overflow:hidden !important; }
+  /* Hide hero excerpt and right side teasers on phones */
+  #cms-mag-hero-excerpt { display: none !important; }
+  .tvn-mag-hero-grid > div:last-child { display: none !important; }
   /* Hide Follow icons in tab bar on phones */
   .tvn-tab-follow { display: none !important; }
   /* Main content padding on phones */
