@@ -9897,7 +9897,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
   fetch('/api/sport')
    .then(function(r){return r.json();})
    .then(function(data){
-    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url&&a.urlToImage;});
+    var arts=(data.articles||[]).filter(function(a){return a.title&&a.title!=='[Removed]'&&a.url;});
     window._tnSportArticles=arts;
     hydrateSport(arts);
     if(location.hash.startsWith('#genre/')&&window.renderGenrePage)window.renderGenrePage(location.hash.slice(7));
