@@ -9761,6 +9761,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     gfSec.style.display='';
     if(window._fixEvents&&window._fixEvents.length&&window._renderFixTrack){
      window._renderFixTrack('genre-fix-track',window._fixEvents);
+     (function(){var w=document.getElementById('genre-fix-section');if(!w||w._swipe)return;w._swipe=true;var sx=0,sy=0;w.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});w.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;var dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)window.genreFixNext();else window.genreFixPrev();}},{passive:true});})();
     }else if(!fixFetched){loadFixtures();}
    }else{
     gfSec.style.display='none';
@@ -9940,6 +9941,17 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
    _gfOff=Math.max(0,_gfOff-_fixW*2);
    var tr=document.getElementById('genre-fix-track');if(tr)tr.style.transform='translateX(-'+_gfOff+'px)';
   };
+  function addFixSwipe(wrapperId,nextFn,prevFn){
+   var wrap=document.getElementById(wrapperId);
+   if(!wrap)return;
+   var sx=0,sy=0;
+   wrap.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+   wrap.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx;
+    var dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)nextFn();else prevFn();}
+   },{passive:true});
+  }
   fetch('/api/fixtures')
    .then(function(r){return r.json();})
    .then(function(data){
@@ -9948,10 +9960,16 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     window._fixEvents=evs;
     var tr=document.getElementById('fix-track');
     var sec=document.getElementById('fix-section');
-    if(tr&&sec){tr.innerHTML=evs.map(fixCard).join('');sec.style.display='';}
-    // also populate genre page fixture section if sport is active
+    if(tr&&sec){
+     tr.innerHTML=evs.map(fixCard).join('');
+     sec.style.display='';
+     addFixSwipe('fix-section',window.fixNext,window.fixPrev);
+    }
     var gfSec=document.getElementById('genre-fix-section');
-    if(gfSec&&gfSec.style.display!=='none')window._renderFixTrack('genre-fix-track',evs);
+    if(gfSec&&gfSec.style.display!=='none'){
+     window._renderFixTrack('genre-fix-track',evs);
+     addFixSwipe('genre-fix-section',window.genreFixNext,window.genreFixPrev);
+    }
    })
    .catch(function(){});
  }
