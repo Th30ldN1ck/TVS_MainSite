@@ -4,22 +4,32 @@ export default async function handler(req, res) {
   };
 
   async function fetchDay(date) {
-    const r = await fetch(
-      `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${date}&s=Soccer`,
-      { headers, signal: AbortSignal.timeout(6000) }
-    );
-    const data = await r.json();
-    return data.events || [];
+    try {
+      const r = await fetch(
+        `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${date}&s=Soccer`,
+        { headers, signal: AbortSignal.timeout(6000) }
+      );
+      const data = await r.json();
+      return data.events || [];
+    } catch {
+      return [];
+    }
   }
 
   try {
-    const today = new Date().toISOString().split('T')[0];
-    let events = await fetchDay(today);
+    const now = Date.now();
+    const dates = [0, 1, 2].map(offset => {
+      return new Date(now + offset * 86400000).toISOString().split('T')[0];
+    });
 
-    // If nothing today, try tomorrow
-    if (!events.length) {
-      const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
-      events = await fetchDay(tomorrow);
+    const results = await Promise.all(dates.map(fetchDay));
+    const seen = new Set();
+    const events = [];
+    for (const day of results) {
+      for (const ev of day) {
+        const key = ev.idEvent || (ev.strHomeTeam + ev.strAwayTeam + ev.dateEvent);
+        if (!seen.has(key)) { seen.add(key); events.push(ev); }
+      }
     }
 
     res.setHeader('Access-Control-Allow-Origin', '*');
