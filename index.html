@@ -437,7 +437,8 @@
 
  /* ── Mobile responsive overrides (inline styles need !important) ── */
  /* ── Skeleton shimmer ── */
- @keyframes tvn-shimmer{0%{background-position:-800px 0}to{background-position:800px 0}}
+ #fix-scroll::-webkit-scrollbar,#genre-fix-scroll::-webkit-scrollbar{display:none;}
+@keyframes tvn-shimmer{0%{background-position:-800px 0}to{background-position:800px 0}}
  .tvn-skel{background:linear-gradient(90deg,#ececec 25%,#f5f5f5 50%,#ececec 75%);background-size:1600px 100%;animation:tvn-shimmer 1.4s ease-in-out infinite;border-radius:6px;display:block;}
  /* ── Pull-to-refresh spinner ── */
  @keyframes tvn-ptr-spin{to{transform:rotate(360deg)}}
@@ -4275,8 +4276,8 @@
       <button id="fix-next-btn" onclick="fixNext()" style="width:34px;height:34px;border-radius:50%;background:#f59e0b;border:1px solid #f59e0b;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">&rsaquo;</button>
      </div>
     </div>
-    <div style="overflow:hidden;">
-     <div id="fix-track" style="display:flex;gap:12px;transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;"></div>
+    <div id="fix-scroll" style="overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+     <div id="fix-track" style="display:flex;gap:12px;"></div>
     </div>
    </div>
 
@@ -4986,8 +4987,8 @@
      <button onclick="genreFixNext()" style="width:34px;height:34px;border-radius:50%;background:#f59e0b;border:1px solid #f59e0b;color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">&rsaquo;</button>
     </div>
    </div>
-   <div style="overflow:hidden;">
-    <div id="genre-fix-track" style="display:flex;gap:12px;transition:transform 0.35s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;"></div>
+   <div id="genre-fix-scroll" style="overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+    <div id="genre-fix-track" style="display:flex;gap:12px;"></div>
    </div>
   </div>
   <!-- Latest Stories: spotlight-style 3-column grid -->
@@ -9761,7 +9762,6 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     gfSec.style.display='';
     if(window._fixEvents&&window._fixEvents.length&&window._renderFixTrack){
      window._renderFixTrack('genre-fix-track',window._fixEvents);
-     (function(){var w=document.getElementById('genre-fix-section');if(!w||w._swipe)return;w._swipe=true;var sx=0,sy=0;w.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});w.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;var dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)window.genreFixNext();else window.genreFixPrev();}},{passive:true});})();
     }else if(!fixFetched){loadFixtures();}
    }else{
     gfSec.style.display='none';
@@ -9904,7 +9904,7 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     :'<div style="font-size:10px;font-weight:700;color:#888;line-height:1.3;text-transform:uppercase;">'+DAYS[d.getDay()]+'</div>'
      +'<div style="font-size:20px;font-weight:900;color:#0d0d0d;line-height:1.1;">'+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'</div>'
      +'<div style="font-size:10px;font-weight:600;color:#aaa;margin-top:1px;">'+d.getDate()+' '+MONTHS[d.getMonth()]+'</div>';
-   return '<div style="flex-shrink:0;width:280px;background:#f8f8f8;border-radius:14px;padding:14px 16px;border:1px solid #efefef;">'
+   return '<div style="flex-shrink:0;width:280px;scroll-snap-align:start;background:#f8f8f8;border-radius:14px;padding:14px 16px;border:1px solid #efefef;">'
     +'<p style="font-size:9px;font-weight:800;color:#888;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 12px;">'+esc(ev.strLeague||'Soccer')+'</p>'
     +'<div style="display:flex;align-items:center;">'
     +'<div style="flex:1;display:flex;flex-direction:column;gap:10px;min-width:0;">'
@@ -9915,43 +9915,14 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     +'</div>'
     +'</div>';
   }
-  var _fixOff=0,_fixW=292;
-  window.fixNext=function(){
-   var tr=document.getElementById('fix-track');if(!tr)return;
-   var max=Math.max(0,tr.scrollWidth-tr.parentElement.offsetWidth);
-   _fixOff=Math.min(_fixOff+_fixW*2,max);
-   tr.style.transform='translateX(-'+_fixOff+'px)';
-  };
-  window.fixPrev=function(){
-   _fixOff=Math.max(0,_fixOff-_fixW*2);
-   var tr=document.getElementById('fix-track');if(tr)tr.style.transform='translateX(-'+_fixOff+'px)';
-  };
+  window.fixNext=function(){var sc=document.getElementById('fix-scroll');if(sc)sc.scrollBy({left:292,behavior:'smooth'});};
+  window.fixPrev=function(){var sc=document.getElementById('fix-scroll');if(sc)sc.scrollBy({left:-292,behavior:'smooth'});};
   window._renderFixTrack=function(trackId,evs){
    var tr=document.getElementById(trackId);
    if(tr)tr.innerHTML=evs.map(fixCard).join('');
   };
-  var _gfOff=0;
-  window.genreFixNext=function(){
-   var tr=document.getElementById('genre-fix-track');if(!tr)return;
-   var max=Math.max(0,tr.scrollWidth-tr.parentElement.offsetWidth);
-   _gfOff=Math.min(_gfOff+_fixW*2,max);
-   tr.style.transform='translateX(-'+_gfOff+'px)';
-  };
-  window.genreFixPrev=function(){
-   _gfOff=Math.max(0,_gfOff-_fixW*2);
-   var tr=document.getElementById('genre-fix-track');if(tr)tr.style.transform='translateX(-'+_gfOff+'px)';
-  };
-  function addFixSwipe(wrapperId,nextFn,prevFn){
-   var wrap=document.getElementById(wrapperId);
-   if(!wrap)return;
-   var sx=0,sy=0;
-   wrap.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-   wrap.addEventListener('touchend',function(e){
-    var dx=e.changedTouches[0].clientX-sx;
-    var dy=e.changedTouches[0].clientY-sy;
-    if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>40){if(dx<0)nextFn();else prevFn();}
-   },{passive:true});
-  }
+  window.genreFixNext=function(){var sc=document.getElementById('genre-fix-scroll');if(sc)sc.scrollBy({left:292,behavior:'smooth'});};
+  window.genreFixPrev=function(){var sc=document.getElementById('genre-fix-scroll');if(sc)sc.scrollBy({left:-292,behavior:'smooth'});};
   fetch('/api/fixtures')
    .then(function(r){return r.json();})
    .then(function(data){
@@ -9960,16 +9931,9 @@ document.querySelectorAll('.faq-trigger:not([onclick])').forEach(function(trigge
     window._fixEvents=evs;
     var tr=document.getElementById('fix-track');
     var sec=document.getElementById('fix-section');
-    if(tr&&sec){
-     tr.innerHTML=evs.map(fixCard).join('');
-     sec.style.display='';
-     addFixSwipe('fix-section',window.fixNext,window.fixPrev);
-    }
+    if(tr&&sec){tr.innerHTML=evs.map(fixCard).join('');sec.style.display='';}
     var gfSec=document.getElementById('genre-fix-section');
-    if(gfSec&&gfSec.style.display!=='none'){
-     window._renderFixTrack('genre-fix-track',evs);
-     addFixSwipe('genre-fix-section',window.genreFixNext,window.genreFixPrev);
-    }
+    if(gfSec&&gfSec.style.display!=='none')window._renderFixTrack('genre-fix-track',evs);
    })
    .catch(function(){});
  }
